@@ -41,6 +41,27 @@ class Student(Person):
         Person.__init__(self, name, age)
         self.scholarship = scholarship
         self.country = country or ''
+        self.n = 0
+
+    # Dunder metodai labai galingi suteikia jusu klasei papildomus funcionalumus,
+    # Jie is anksto apibrezti, todel reikia zinoti kuris yra kam skirtas pries keiciant.
+    def __str__(self):
+        return f"{self.name} is {self.age} years old, from {self.country or 'Unknown'}"
+
+    def __len__(self):
+        return len(self.name)
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def __next__(self):
+        if self.n <= len(self) - 1:
+            iter_result = self.name[self.n]
+            self.n += 1
+            return iter_result
+        else:
+            raise StopIteration
 
     def show_finance(self):
         return self.scholarship
@@ -61,9 +82,6 @@ class Student(Person):
         if name[0].isupper() and len(name) > 3:
             return True
         return False
-
-    def __str__(self):
-        return f"{self.name} is {self.age} years old, from {self.country or 'Unknown'}"
 
 
 # Multiple inheritance
@@ -151,6 +169,9 @@ if __name__ == "__main__":
     print(Student.is_name_correct('aaaaa'))
     # klases metodas create_from_string neprieina pirie objekto kintamuju, bet prieina prie klases kintamuju
     # per raktazodi cls pvz galima pasiekti cls._student_country metode create_from_string
-    alternative_student = Student.create_from_string("Perr 100 10000")
+    alternative_student = Student.create_from_string("Perrerrhbgregrgerggeewg 100 10000")
     print(alternative_student)
+    print(len(alternative_student))
+    for e in alternative_student:
+        print(e)
 
