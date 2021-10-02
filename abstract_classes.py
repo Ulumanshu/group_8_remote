@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+# Paprasta klase
 class Person:
     def __init__(self, name, age):
         self.name = name
@@ -14,6 +14,7 @@ class Person:
 
 
 # Simple inheritance
+# Paprastas pavedejimas (1na tevine klase)
 class Employee(Person):
     def __init__(self, name, age, rate, num_of_hours):
         # Specify what super class to use if using multiple inheritance
@@ -26,6 +27,7 @@ class Employee(Person):
 
 
 # Simple inheritance
+# Paprastas pavedejimas (1na tevine klase)
 class Student(Person):
     def __init__(self, name, age, scholarship):
         # Specify what super class to use if using multiple inheritance
@@ -37,7 +39,8 @@ class Student(Person):
 
 
 # Multiple inheritance
-class WorkingStudent(Employee, Student):
+# Daugybinis paveldejimas (paveldi daugiau nei viena klase)
+class WorkingStudent(Student, Employee):
     def __init__(self, name, age, rate, num_of_hour, scholarship):
         # Specify what super class to use if using multiple inheritance
         Employee.__init__(self, name, age, rate, num_of_hour)
@@ -53,9 +56,14 @@ if __name__ == "__main__":
     os3 = Student("Agatha", 22, 1000)
     os4 = WorkingStudent("Monica", 24, 9.5, 70, 550)
     object_list = [os1, os2, os3, os4]
+    # Polymorphism, using show_finance methods on object list made of objects with different classes. All classes have
+    # show_finance method implemented
+    # Polimorfizmas, naudojamas show_finance metodas objektu sarasui, sarase objektai sukurti is skirtingu klasiu,
+    # polimorfizmas ir yra tai, visos tos klases turi metoda tuo pat pavadinimu.
     for i in object_list:
         print(f'{i} finasai: {i.show_finance()}')
-    print(os1)
-    print(os2)
-    print(os3)
-    print(os4)
+
+    # print(os1)
+    # print(os2)
+    # print(os3)
+    # print(os4)
