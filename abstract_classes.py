@@ -33,13 +33,37 @@ class Employee(Person):
 # Simple inheritance
 # Paprastas pavedejimas (1na tevine klase)
 class Student(Person):
-    def __init__(self, name, age, scholarship):
+
+    _student_country = ' Lithuania'
+
+    def __init__(self, name, age, scholarship, country=None):
         # Specify what super class to use if using multiple inheritance
         Person.__init__(self, name, age)
         self.scholarship = scholarship
+        self.country = country or ''
 
     def show_finance(self):
         return self.scholarship
+
+    # Clases ir Statiniai dekoratoriai klasiu metodams
+    # Alternatyvaus kontruktoriaus (__init__ atitikmuo) pavyzdys, funcija create_from_string gali buti panaudota
+    # nauju klases Student objektu kurimui
+    @classmethod
+    def create_from_string(cls, sentence):
+        name, age, scholarship = sentence.split()
+        age, scholarship = int(age), float(scholarship)
+        country = cls._student_country
+        if cls.is_name_correct(name):
+            return cls(name, age, scholarship, country)
+
+    @staticmethod
+    def is_name_correct(name):
+        if name[0].isupper() and len(name) > 3:
+            return True
+        return False
+
+    def __str__(self):
+        return f"{self.name} is {self.age} years old, from {self.country or 'Unknown'}"
 
 
 # Multiple inheritance
@@ -112,7 +136,21 @@ if __name__ == "__main__":
     # print(os4)
     ####################################################################################################################
     ############### ABSTRACT CLASSES / ABSTRAKCIOS KLASES ##############################################################
-    Rectangle = Rectangle(3, 5)
-    Circle = Circle(12)
-    print(Rectangle.circuit())
-    print(Circle.circuit())
+    # Rectangle = Rectangle(3, 5)
+    # Circle = Circle(12)
+    # print(Rectangle.circuit())
+    # print(Circle.circuit())
+
+    ###### STATIC / CLASS method class decorators / Statiniai ir Klases dekoratoriai klasiu funcijoms ##################
+    # static_student = Student('Statistinis Studentas', 22, 160)
+    # print(static_student)
+    # print(static_student.show_finance())
+    # print(static_student.is_name_correct(static_student.name))
+    # statinis metodas is_name_correct veikia be objekto, galima kvieti is klases,
+    # neprieina nei prie objekto nei prie klases kintamuju
+    print(Student.is_name_correct('aaaaa'))
+    # klases metodas create_from_string neprieina pirie objekto kintamuju, bet prieina prie klases kintamuju
+    # per raktazodi cls pvz galima pasiekti cls._student_country metode create_from_string
+    alternative_student = Student.create_from_string("Perr 100 10000")
+    print(alternative_student)
+
