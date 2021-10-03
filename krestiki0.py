@@ -8,9 +8,14 @@ os.environ['TERM'] = 'xterm'
 
 
 # UZD 1 pabaigti zaidima krestiki ir noliky:):
-# 1.1 priskirti gieztai X ir O zaidejams
-# 1.1 sukurti priesininko ejimo algoritma
-# 1.2 sukurti zaidimo laimejimo algoritma
+# 1.1 priskirti gieztai X ir O zaidejams ~ Done su skintamaisiais
+# 1.1 sukurti priesininko ejimo algoritma ~ Done randominis (Challenge sukurti geresni)
+# 1.2 sukurti zaidimo laimejimo algoritma  ~ Done
+# 1.3 Neleisti zaidejui pildyti uzpildytu celiu
+# 1.4 Tikrinti userio ivedamus simbolius, apriboti galimybe ivedimui (leisti tik 1-9)
+# 1.5 Padaryti, kad butu galima pasirinkti pradzioje, kas eis pirmas
+# 1.6 Padaryti kad du automatai galetu zaisti pagal save, ir kad butu galima tureti Ai zaidejus, kurie eina pagal
+# skirtingus algoritmus.
 class Cell:
     def __init__(self, nr_):
         self.nr = nr_ + 1
@@ -122,6 +127,7 @@ class GameController:
 
     def get_user_input(self):
         user_input = input("Target a cell (1-9): ")
+        # Userio inputo patikros funcija galetu buti cia kvieciama (1.3, 1.4)
         selected_cell = int(user_input)
         cell_obj = self.board.cells[selected_cell -1]
         cell_obj.content = self.player_symbol
@@ -177,8 +183,3 @@ class GameController:
 if __name__ == "__main__":
     game_ = GameController()
     game_.start_game()
-
-# check_map = [
-#     (1, 2, 3),  # pirma horizontali eilute is virsaus
-#     (4, 5, 6),  # pirma horizontali eilute is virsaus
-# ]
