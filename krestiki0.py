@@ -179,6 +179,12 @@ class GameController:
         while self.state != 'done':
             self.get_user_input()
 
+        # Ideti user inputa, kuris paklausia ar po laimejimo nori dar zaisti
+        # jei nori, tada paleisti ta pacia funcija is naujo, nutrynus lenta
+        # user_input = input("Want to try again? (Y/N): ")
+        # if str(user_input).strip() == 'Y':
+        #     self.start_game()
+
 
 if __name__ == "__main__":
     game_ = GameController()
