@@ -16,6 +16,9 @@ class Cell:
         self.nr = nr_ + 1
         self.content = '-'
 
+    def __repr__(self):
+        return f"Celė {self.nr}:  {self.content}"
+
 
 class Board:
     def __init__(self):
@@ -49,7 +52,7 @@ class Board:
 
     @staticmethod
     def clear_console():
-        os.system('clear')
+        os.system('cls')
 
     def display_board(self, message1=None, message2=None):
         self.clear_console()
@@ -79,9 +82,43 @@ class GameController:
         self.ai_symbol = self.ai_symbol[0]
         self.oponent_ai = OpponentAi(self.ai_symbol)
         self.state = ''
+        self.current_player = 'user'
 
     def reset_board(self):
         self.board = Board()
+
+    def check_if_won(self):
+        winner = ''
+        win = False
+        check_map = [
+            (1, 2, 3),  # pirma horizontali eilute is virsaus
+            (4, 5, 6),  # pirma horizontali eilute is virsaus
+            (7, 8, 9),
+            (1, 4, 7),
+            (2, 5, 8),
+            (3, 6, 9),
+            (1, 5, 9),
+            (3, 5, 7)
+        ]
+        game_cells = self.board.cells
+        for check_tuple in check_map:
+            cells_to_check = [c_ for c_ in game_cells if c_.nr in check_tuple]
+            print(cells_to_check)
+            unique_content = set()
+            for i in cells_to_check:
+                unique_content.add(i.content)
+            print(unique_content)
+            if len(unique_content) == 1:
+                uni_con = list(unique_content)[0]
+                if uni_con == '-':
+                    pass
+                else:  # vieta, kur pazymi, kad laimejo
+                    win = True
+                    if uni_con == self.ai_symbol:
+                        winner = self.oponent_ai.name
+                    else:
+                        winner = 'player'
+        return win, winner
 
     def get_user_input(self):
         user_input = input("Target a cell (1-9): ")
@@ -90,6 +127,14 @@ class GameController:
         cell_obj.content = self.player_symbol
         # CHECK IF GAME NOT WON (If yes change GameController state)
         # Patikrinti ar zaidimas nelaimetas, o jei taip pakeisti Game Controlelio steita i done
+        win, winner = self.check_if_won()
+        if win:
+            self.state = 'done'
+            self.board.display_board(
+                message1=f"Game over!",
+                message2=f'{winner} won !!!'
+            )
+            return
         # display board, kas laimejo.
         # daryti return
         #######################
@@ -108,6 +153,14 @@ class GameController:
         )
         # CHECK IF GAME NOT WON (If yes change GameController state)
         # Patikrinti ar zaidimas nelaimetas, o jei taip pakeisti Game Controlerio steita i done
+        win, winner = self.check_if_won()
+        if win:
+            self.state = 'done'
+            self.board.display_board(
+                message1=f"Game over!",
+                message2=f'{winner} won !!!'
+            )
+            return
         # display board, kas laimejo.
         # daryti return
         #######################
