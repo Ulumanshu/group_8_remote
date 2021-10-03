@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 from math import pi
+from pprint import pprint
 
 
 # Paprasta klase
@@ -42,6 +43,7 @@ class Student(Person):
         self.scholarship = scholarship
         self.country = country or ''
         self.n = 0
+        self._student_country = 'Mozambic'
 
     # Dunder metodai labai galingi suteikia jusu klasei papildomus funcionalumus,
     # Jie is anksto apibrezti, todel reikia zinoti kuris yra kam skirtas pries keiciant.
@@ -123,12 +125,30 @@ class Rectangle(Figure):
         return self.a * self.b
 
 
-class Circle(Figure):
+class Circle:
+
+    _pi = 3.14
+    __count = 0
+
     def __init__(self, r):
-        self.r = r
+        # self._pi = 1
+        self.r = r * self._pi
+        self.__id = self._count()
+
+    def __repr__(self):
+        return f"Circle - Id: { self.id } { self.r }"
+
+    @property
+    def id(self):
+        return self.__id
+
+    @classmethod
+    def _count(cls):
+        cls.__count += 1
+        return cls.__count
 
     def circuit(self):
-        return 2 * self.r * pi
+        return 2 * self._pi * self.r
 
     def area(self):
         return pi * self.r ** 2
@@ -136,11 +156,11 @@ class Circle(Figure):
 
 if __name__ == "__main__":
     ##################### INHERITANVE/PAVELDEJIMAS #####################################################################
-    os1 = Person("John", 54)
-    os2 = Employee("Jack", 36, 20, 160)
-    os3 = Student("Agatha", 22, 1000)
-    os4 = WorkingStudent("Monica", 24, 9.5, 70, 550)
-    object_list = [os1, os2, os3, os4]
+    # os1 = Person("John", 54)
+    # os2 = Employee("Jack", 36, 20, 160)
+    # os3 = Student("Agatha", 22, 1000)
+    # os4 = WorkingStudent("Monica", 24, 9.5, 70, 550)
+    # object_list = [os1, os2, os3, os4]
     # Polymorphism, using show_finance methods on object list made of objects with different classes. All classes have
     # show_finance method implemented
     # Polimorfizmas, naudojamas show_finance metodas objektu sarasui, sarase objektai sukurti is skirtingu klasiu,
@@ -166,12 +186,30 @@ if __name__ == "__main__":
     # print(static_student.is_name_correct(static_student.name))
     # statinis metodas is_name_correct veikia be objekto, galima kvieti is klases,
     # neprieina nei prie objekto nei prie klases kintamuju
-    print(Student.is_name_correct('aaaaa'))
+    # print(Student.is_name_correct('aaaaa'))
     # klases metodas create_from_string neprieina pirie objekto kintamuju, bet prieina prie klases kintamuju
     # per raktazodi cls pvz galima pasiekti cls._student_country metode create_from_string
-    alternative_student = Student.create_from_string("Perrerrhbgregrgerggeewg 100 10000")
-    print(alternative_student)
-    print(len(alternative_student))
-    for e in alternative_student:
-        print(e)
+    # alternative_student = Student.create_from_string("Perrerrhbgregrgerggeewg 100 10000")
+    # print(alternative_student)
+    # print(len(alternative_student))
+    # for e in alternative_student:
+    #     print(e)
 
+    # st1 = Student("Agatha", 22, 1000)
+    # st2 = Student("John", 30, 1000)
+    #
+    # print(
+    #     st1._student_country,  # st1 yra klases instancas (objektas sukurtas pagal klases brezini), klases kode - self
+    #     Student._student_country,  # Student yra klase, klases kode - cls
+    # )
+
+    # c1 = Circle(2)
+    # print(c1, c1.r)
+    # print(c1.circuit(c1.r))
+    # c1.area()
+    circle_list = []
+    for i in range(100):
+        obj = Circle(i + 1)
+        circle_list.append(obj)
+
+    pprint(circle_list, indent=4)
