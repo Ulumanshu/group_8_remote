@@ -14,7 +14,7 @@ os.environ['TERM'] = 'xterm'
 # 1.3 Neleisti zaidejui pildyti uzpildytu celiu
 # 1.4 Tikrinti userio ivedamus simbolius, apriboti galimybe ivedimui (leisti tik 1-9)
 # 1.5 Padaryti, kad butu galima pasirinkti pradzioje, kas eis pirmas
-# 1.6 Padaryti kad du automatai galetu zaisti pagal save, ir kad butu galima tureti Ai zaidejus, kurie eina pagal
+# 1.6 Padaryti kad du automatai galetu zaisti pries save, ir kad butu galima tureti Ai zaidejus, kurie eina pagal
 # skirtingus algoritmus.
 class Cell:
     def __init__(self, nr_):
