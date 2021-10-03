@@ -2,11 +2,13 @@
 
 import os
 import time
+from random import randint
 
 os.environ['TERM'] = 'xterm'
 
 
 # UZD 1 pabaigti zaidima krestiki ir noliky:):
+# 1.1 priskirti gieztai X ir O zaidejams
 # 1.1 sukurti priesininko ejimo algoritma
 # 1.2 sukurti zaidimo laimejimo algoritma
 class Cell:
@@ -55,14 +57,27 @@ class Board:
 
 
 class OpponentAi:
-    def __init__(self):
+    def __init__(self, game_symbol):
         self.name = 'Petras I'
+        self.ai_symbol = game_symbol
+
+    def make_a_move(self, cells):
+        valid_cells = [cell for cell in cells if cell.content == '-']
+        rand_range = len(valid_cells)
+        if rand_range > 0:
+            chosen_cell = valid_cells[randint(0, rand_range - 1)]
+            chosen_cell.content = self.ai_symbol
 
 
 class GameController:
     def __init__(self):
         self.board = Board()
-        self.oponent_ai = OpponentAi()
+        self.game_symbols = ['X', 'O']
+        self.player_symbol = input("Choose your play symbol (X/O): ")
+        self.ai_symbol = list(self.game_symbols)
+        self.ai_symbol.remove(self.player_symbol)
+        self.ai_symbol = self.ai_symbol[0]
+        self.oponent_ai = OpponentAi(self.ai_symbol)
         self.state = ''
 
     def reset_board(self):
@@ -71,9 +86,8 @@ class GameController:
     def get_user_input(self):
         user_input = input("Target a cell (1-9): ")
         selected_cell = int(user_input)
-        player_value = input(f"Cell { selected_cell } selected, Enter Value (X/O): ")
         cell_obj = self.board.cells[selected_cell -1]
-        cell_obj.content = player_value
+        cell_obj.content = self.player_symbol
         # CHECK IF GAME NOT WON (If yes change GameController state)
         # Patikrinti ar zaidimas nelaimetas, o jei taip pakeisti Game Controlelio steita i done
         # display board, kas laimejo.
@@ -86,13 +100,14 @@ class GameController:
         time.sleep(1)
         # NOW LET AI PLACE ITS X OR Y
         # Padaryti ejima su AI
+        self.oponent_ai.make_a_move(self.board.cells)
         #############################
         self.board.display_board(
             message1=f"RIP IT:)",
             message2='YOUR TURN !!!'
         )
         # CHECK IF GAME NOT WON (If yes change GameController state)
-        # Patikrinti ar zaidimas nelaimetas, o jei taip pakeisti Game Controlelio steita i done
+        # Patikrinti ar zaidimas nelaimetas, o jei taip pakeisti Game Controlerio steita i done
         # display board, kas laimejo.
         # daryti return
         #######################
@@ -109,3 +124,8 @@ class GameController:
 if __name__ == "__main__":
     game_ = GameController()
     game_.start_game()
+
+# check_map = [
+#     (1, 2, 3),  # pirma horizontali eilute is virsaus
+#     (4, 5, 6),  # pirma horizontali eilute is virsaus
+# ]
