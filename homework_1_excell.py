@@ -98,6 +98,7 @@ class ExelioEilute:
 
 
 class AtaskaituKlase(EXS):
+
     all_parameters = ['regions', 'items', 'representatives']
 
     def __init__(self, item_lines, name=None, parent_total=0.00):
@@ -168,13 +169,4 @@ if __name__ == "__main__":
 
     ataskaitu_generatorius = AtaskaituKlase(line_object_list)
     ataskaitu_generatorius.generate_stats()
-
     ataskaitu_generatorius.display_report()
-
-    # loop_results(ataskaitu_generatorius, 'regions')
-    # loop_results(ataskaitu_generatorius, 'items')
-    # loop_results(ataskaitu_generatorius, 'representatives')
-
-    # 1. perkelti medodus loop_results ir loop loop_subresults i AtaskaituKlase
-    # 2. all_parameters kintamaji padaryti AtaskaituKlase klases kintamuoju
-    # 3. padaryti bendra iskvietimo metoda 168 - 170 AtaskaituKlase
