@@ -11,9 +11,14 @@ class EXS:
         self.regions = []
         self.items = []
         self.representatives = []
+        # self.generate_stats()
         self.name = name or ''
         self.parent_total = parent_total or 0.00
-        self.total_percent = self.parent_total > 0 and (self.total_sold / self.parent_total) * 100 or 0.00
+        self.total_percent = round(self.parent_total > 0 and (self.total_sold / self.parent_total) * 100 or 0.00, 2)
+
+    def __repr__(self):
+        return f"{self.name}: Total Sold: {self.total_sold}, Percent Of Sales: {self.total_percent} %," \
+               f" Parent Total: {self.parent_total}"
 
     def generate_stats(self):
         self.exs_region()
@@ -22,7 +27,7 @@ class EXS:
 
     @property
     def total_sold(self):
-        return sum([float(e.total) for e in self.lines])
+        return round(sum([float(e.total) for e in self.lines]), 2)
 
     def sort_by_field(self, parameter='country', report_obj=None):
         res = []
@@ -93,9 +98,24 @@ class ExelioEilute:
 
 
 class AtaskaituKlase(EXS):
-    def __init__(self):
-        init_lines = []
-        super(AtaskaituKlase, self).__init__(init_lines)
+    def __init__(self, item_lines, name=None, parent_total=0.00):
+        super(AtaskaituKlase, self).__init__(item_lines, name='Main Report', parent_total=0.00)
+
+
+def loop_results(report_object, parameter):
+    for item in getattr(report_object, parameter):
+        item.generate_stats()
+        print(item)
+        loop_subresults(item, parameter)
+
+
+def loop_subresults(report_object, parameter):
+    all_parameters = ['regions', 'items', 'representatives']
+    all_parameters.remove(parameter)
+    other_parameters = all_parameters
+    for other_param in other_parameters:
+        for item in getattr(report_object, other_param):
+            print('-', item)
 
 
 file_location_name = "./homework.xlsx"
@@ -106,7 +126,7 @@ file_location_name = "./homework.xlsx"
     # * Pardavejai pagal pardavimus ir sekmingiausias regionas, labiausiai parduodama preke su % nuo visu pardavejo pardavimu
     # * Itemai pagal pargavimus geriausias regionas/pardavejas ir ju %.
 if __name__ == "__main__":
-    ataskaitu_generatorius = AtaskaituKlase()
+    line_object_list = []
     wb = openpyxl.load_workbook(
         filename=file_location_name,
         read_only=True,
@@ -130,7 +150,7 @@ if __name__ == "__main__":
         eilutes_prod_kiekis = xlsx_line[4]
         eilutes_prod_kaina = xlsx_line[5]
         eilutes_viso = xlsx_line[6]
-        eilute = ExelioEilute(
+        excell_line = ExelioEilute(
             ln_count,
             eilutes_data,
             eilutes_salis,
@@ -140,28 +160,13 @@ if __name__ == "__main__":
             eilutes_prod_kaina,
             eilutes_viso
         )
-        ataskaitu_generatorius.lines.append(eilute)
+        line_object_list.append(excell_line)
 
+    ataskaitu_generatorius = AtaskaituKlase(line_object_list)
     ataskaitu_generatorius.generate_stats()
 
-    for reg in ataskaitu_generatorius.regions:
-        print(reg.name)
-        print(reg.total_sold)
-        print(ataskaitu_generatorius.total_sold)
-        print(reg.parent_total)
-        print(f"{reg.total_percent} %")
+    loop_results(ataskaitu_generatorius, 'regions')
+    loop_results(ataskaitu_generatorius, 'items')
+    loop_results(ataskaitu_generatorius, 'representatives')
 
-    for item in ataskaitu_generatorius.items:
-        print(item.name)
-        print(item.total_sold)
-        print(ataskaitu_generatorius.total_sold)
-        print(item.parent_total)
-        print(f"{item.total_percent} %")
-
-    for rep in ataskaitu_generatorius.representatives:
-        print(rep.name)
-        print(rep.total_sold)
-        print(ataskaitu_generatorius.total_sold)
-        print(rep.parent_total)
-        print(f"{rep.total_percent} %")
 
