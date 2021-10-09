@@ -98,33 +98,37 @@ class ExelioEilute:
 
 
 class AtaskaituKlase(EXS):
+    all_parameters = ['regions', 'items', 'representatives']
+
     def __init__(self, item_lines, name=None, parent_total=0.00):
         super(AtaskaituKlase, self).__init__(item_lines, name='Main Report', parent_total=0.00)
 
+    def loop_results(self, parameter):
+        for item in getattr(self, parameter):
+            item.generate_stats()
+            print(item)
+            self.loop_subresults(item, parameter)
 
-def loop_results(report_object, parameter):
-    for item in getattr(report_object, parameter):
-        item.generate_stats()
-        print(item)
-        loop_subresults(item, parameter)
+    def loop_subresults(self, report_object, parameter):
+        all_parameters = list(self.all_parameters)
+        all_parameters.remove(parameter)
+        other_parameters = all_parameters
+        for other_param in other_parameters:
+            for item in getattr(report_object, other_param):
+                print('-', item)
 
-
-def loop_subresults(report_object, parameter):
-    all_parameters = ['regions', 'items', 'representatives']
-    all_parameters.remove(parameter)
-    other_parameters = all_parameters
-    for other_param in other_parameters:
-        for item in getattr(report_object, other_param):
-            print('-', item)
+    def display_report(self):
+        for parameter in self.all_parameters:
+            self.loop_results(parameter)
 
 
 file_location_name = "./homework.xlsx"
 # 1. Pasirasyti pora klasiu duomenu is exelio eilutems talpinti (Klases Regionams, Pardavejams ir Itemams)
 # 2. Sutalpinus duomenis is savo strukturas tu klasiu objektuose, paruosti duomenis eksportui i tris ataskaitas.
-    # * Regionai pagal pardavimus (Total stulpelis), turi buti sekmingiausio regione pardavejo ir produkto laukai su ju %
-    # nuo bendros regiono apyvartos
-    # * Pardavejai pagal pardavimus ir sekmingiausias regionas, labiausiai parduodama preke su % nuo visu pardavejo pardavimu
-    # * Itemai pagal pargavimus geriausias regionas/pardavejas ir ju %.
+# * Regionai pagal pardavimus (Total stulpelis), turi buti sekmingiausio regione pardavejo ir produkto laukai su ju %
+# nuo bendros regiono apyvartos
+# * Pardavejai pagal pardavimus ir sekmingiausias regionas, labiausiai parduodama preke su % nuo visu pardavejo pardavimu
+# * Itemai pagal pargavimus geriausias regionas/pardavejas ir ju %.
 if __name__ == "__main__":
     line_object_list = []
     wb = openpyxl.load_workbook(
@@ -165,9 +169,11 @@ if __name__ == "__main__":
     ataskaitu_generatorius = AtaskaituKlase(line_object_list)
     ataskaitu_generatorius.generate_stats()
 
-    loop_results(ataskaitu_generatorius, 'regions')
-    loop_results(ataskaitu_generatorius, 'items')
-    loop_results(ataskaitu_generatorius, 'representatives')
+    ataskaitu_generatorius.display_report()
+
+    # loop_results(ataskaitu_generatorius, 'regions')
+    # loop_results(ataskaitu_generatorius, 'items')
+    # loop_results(ataskaitu_generatorius, 'representatives')
 
     # 1. perkelti medodus loop_results ir loop loop_subresults i AtaskaituKlase
     # 2. all_parameters kintamaji padaryti AtaskaituKlase klases kintamuoju
