@@ -169,4 +169,6 @@ if __name__ == "__main__":
     loop_results(ataskaitu_generatorius, 'items')
     loop_results(ataskaitu_generatorius, 'representatives')
 
-
+    # 1. perkelti medodus loop_results ir loop loop_subresults i AtaskaituKlase
+    # 2. all_parameters kintamaji padaryti AtaskaituKlase klases kintamuoju
+    # 3. padaryti bendra iskvietimo metoda 168 - 170 AtaskaituKlase
