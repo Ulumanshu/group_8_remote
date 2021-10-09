@@ -15,7 +15,6 @@ if __name__ == "__main__":
 
     new_dict2 = deepcopy(sample_dict) # visikai nauja pagrindinio dicto ir visu kompleksiniu kintamuju jame kopija
 
-
     complex_data.append(6)
     sample_dict['key1'] = 19
     sample_dict['key3'].append(19)
@@ -26,16 +25,14 @@ if __name__ == "__main__":
     print('simple copy new dict()', new_dict3)
     print('just assigment to new variable', new_dict4)
 
-
-
-    api_response = {
-        'country': {
-            'latitude': 2.0000,
-            'capital': "Vilnius",
-        },
-        'country': {
-            'latitude': 2.0000,
-            'capital': "Vilnius",
-        }
-
-    }
+    # api_response = {
+    #     'country': {
+    #         'latitude': 2.0000,
+    #         'capital': "Vilnius",
+    #     },
+    #     'country': {
+    #         'latitude': 2.0000,
+    #         'capital': "Vilnius",
+    #     }
+    #
+    # }
