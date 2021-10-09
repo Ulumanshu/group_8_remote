@@ -6,11 +6,23 @@ import base64
 
 
 class EXS:
-    def __init__(self, data_lines):
+    def __init__(self, data_lines, name=None, parent_total=0.00):
         self.lines = data_lines
         self.regions = []
         self.items = []
         self.representatives = []
+        self.name = name or ''
+        self.parent_total = parent_total or 0.00
+        self.total_percent = self.parent_total > 0 and (self.total_sold / self.parent_total) * 100 or 0.00
+
+    def generate_stats(self):
+        self.exs_region()
+        self.exs_rep()
+        self.exs_item()
+
+    @property
+    def total_sold(self):
+        return sum([float(e.total) for e in self.lines])
 
     def sort_by_field(self, parameter='country', report_obj=None):
         res = []
@@ -22,7 +34,7 @@ class EXS:
         # Randam exelio eilutes pagal ta lauka
         for uniq_parameter in unique_parameters:
             parameter_lines = [ln for ln in self.lines if getattr(ln, parameter) == uniq_parameter]
-            region_object = EXS_Region(parameter_lines)
+            region_object = report_obj(parameter_lines, name=uniq_parameter, parent_total=self.total_sold)
             res.append(region_object)
 
         return res
@@ -33,7 +45,7 @@ class EXS:
 
     def exs_rep(self):
         rep_objects = self.sort_by_field(parameter='salesperson', report_obj=EXS_Rep)
-        self.representative = rep_objects
+        self.representatives = rep_objects
 
     def exs_item(self):
         rep_objects = self.sort_by_field(parameter='product', report_obj=EXS_Item)
@@ -41,30 +53,18 @@ class EXS:
 
 
 class EXS_Region(EXS):
-    def __init__(self, region_lines):
-        super(EXS_Region, self).__init__(region_lines)
-
-    @property
-    def total_sold(self):
-        return sum([float(e.total) for e in self.lines])
+    def __init__(self, region_lines, name=None, parent_total=0.00):
+        super(EXS_Region, self).__init__(region_lines, name, parent_total)
 
 
 class EXS_Rep(EXS):
-    def __init__(self, salesman_lines):
-        super(EXS_Rep, self).__init__(salesman_lines)
-
-    @property
-    def total_sold(self):
-        return sum([float(e.total) for e in self.lines])
+    def __init__(self, salesman_lines, name=None, parent_total=0.00):
+        super(EXS_Rep, self).__init__(salesman_lines, name, parent_total)
 
 
 class EXS_Item(EXS):
-    def __init__(self, item_lines):
-        super(EXS_Item, self).__init__(item_lines)
-
-    @property
-    def total_sold(self):
-        return sum([float(e.total) for e in self.lines])
+    def __init__(self, item_lines, name=None, parent_total=0.00):
+        super(EXS_Item, self).__init__(item_lines, name, parent_total)
 
 
 class ExelioEilute:
@@ -142,15 +142,26 @@ if __name__ == "__main__":
         )
         ataskaitu_generatorius.lines.append(eilute)
 
-    ataskaitu_generatorius.exs_region()
-    ataskaitu_generatorius.exs_rep()
-    ataskaitu_generatorius.exs_item()
+    ataskaitu_generatorius.generate_stats()
 
     for reg in ataskaitu_generatorius.regions:
+        print(reg.name)
         print(reg.total_sold)
+        print(ataskaitu_generatorius.total_sold)
+        print(reg.parent_total)
+        print(f"{reg.total_percent} %")
 
     for item in ataskaitu_generatorius.items:
+        print(item.name)
         print(item.total_sold)
+        print(ataskaitu_generatorius.total_sold)
+        print(item.parent_total)
+        print(f"{item.total_percent} %")
 
     for rep in ataskaitu_generatorius.representatives:
+        print(rep.name)
         print(rep.total_sold)
+        print(ataskaitu_generatorius.total_sold)
+        print(rep.parent_total)
+        print(f"{rep.total_percent} %")
+
