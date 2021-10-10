@@ -1,0 +1,14 @@
+
+Užsakymas 2017452
+
+Brėžinys D2091103
+
+Lempų grandinė kairėje:
+LK1 = 2100 mm 
+LK2 = 1386 mm 
+LK3 = 0 mm 
+LK4 = 0 mm 
+LK5 = 0 mm 
+LK6 = 0 mm 
+LK7 = 0 mm 
+LK8 = 0 mm 
