@@ -3,6 +3,7 @@
 from datetime import datetime
 import time
 from datetime import datetime
+from timer_decorator import timing
 
 
 def modify(func):
@@ -19,7 +20,6 @@ def modify(func):
 
 def modify_2(func):
     # a decorator that only calls a decorated function during the day
-    time.sleep(1)
     def wrapper(x, y):
         time.sleep(1)
         now = datetime.now().time() # time object
@@ -39,26 +39,28 @@ def run_only_between(from_=7, to_=22):
     return dec
 
 
-@modify_2
-@modify
-def do_something(x, y):
+@timing
+# @modify_2
+# @modify
+def do_something(x, y, *args, **kw):
     output = (x ** 2) + (y ** 2)
     return output
 
 
+@timing
 @modify_2
 @modify
 def suma(a, b):
     output = (a + b)
     return output
 
-
+@timing
 @run_only_between(7, 10)
 def say_something():
     print("Hello world")
 
 
 if __name__ == '__main__':
-    print(do_something(5, 4))
+    print(do_something(5, 4, 0, kazkoks_kwargas=606, kw_2=0))
     print(suma(5, 4))
     say_something()
