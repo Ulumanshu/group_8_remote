@@ -1,0 +1,14 @@
+
+Užsakymas 2017452
+
+Brėžinys D2091103
+
+Lempų grandinė dešinėje:
+LD1 = 570 mm 
+LD2 = 1800 mm 
+LD3 = 2400 mm 
+LD4 = 2286 mm 
+LD5 = 0 mm 
+LD6 = 0 mm 
+LD7 = 0 mm 
+LD8 = 0 mm 
