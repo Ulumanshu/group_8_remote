@@ -27,6 +27,8 @@ if __name__ == "__main__":
     worksheet = workbook.add_worksheet(str('Sheet1'))
     for row, data_line in enumerate(excell_data):
         for col, data_value in enumerate(data_line):
-            worksheet.write(row, col, data_value)  # Writes None
+            # if salyga jei formule naudojam write_formula() jei siaip turinys naudojam write()
+            # formule yra stringas kuris prasideda =
+            worksheet.write(row, col, data_value)  # Writes
 
     workbook.close()
