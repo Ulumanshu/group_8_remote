@@ -29,7 +29,8 @@ if __name__ == "__main__":
         for col, data_value in enumerate(data_line):
             if isinstance(data_value, datetime):
                 data_value = data_value.strftime("%Y - %m - %d")
-
+            if isinstance(data_value, float):
+                data_value = round(data_value, 2)
 
             worksheet.write(row, col, data_value)  # Writes
 
