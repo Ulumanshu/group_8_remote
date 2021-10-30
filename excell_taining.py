@@ -1,6 +1,6 @@
 import openpyxl
-# import xlsxwriter
 from xlsxwriter.workbook import Workbook
+from datetime import datetime
 from pprint import pprint
 
 
@@ -27,8 +27,10 @@ if __name__ == "__main__":
     worksheet = workbook.add_worksheet(str('Sheet1'))
     for row, data_line in enumerate(excell_data):
         for col, data_value in enumerate(data_line):
-            # if salyga jei formule naudojam write_formula() jei siaip turinys naudojam write()
-            # formule yra stringas kuris prasideda =
+            if isinstance(data_value, datetime):
+                data_value = data_value.strftime("%Y - %m - %d")
+
+
             worksheet.write(row, col, data_value)  # Writes
 
     workbook.close()
