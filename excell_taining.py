@@ -38,7 +38,13 @@ if __name__ == "__main__":
     # # workbook.close()
 
     varied_array = [1, 2.99, 'text', (1, 9), [1, 2], {'names': 200000}, {1, 2, 3}, None, True, False, datetime.strptime('2011-04-01', '%Y-%m-%d')]
-    for e in varied_array:
-        print('ELEMENTAS', e)
-        print("ELEMENTO TIPAS", type(e))
-        print("ISINSTACE FLOAT/INT/DATE?: ", isinstance(e, (int, float, datetime)))
+    for nr, e in enumerate(varied_array):
+
+        # print('ELEMENTAS', e)
+        # print("ELEMENTO TIPAS", type(e))
+        # print("ISINSTACE FLOAT/INT/DATE?: ", isinstance(e, (float, datetime)))
+        if isinstance(e, (float, int)):
+            print(e)
+            print(nr)
+            print(nr + e)
+            print('___________')
