@@ -34,23 +34,25 @@ if __name__ == "__main__":
                     data_value = round(data_value, 2)
 
                 worksheet.write(row, col, data_value)  # Writes
-                chart_pie = workbook.add_chart({'type': 'column'})
-                # chart_pie.add_series({'values': '=Sheet1!$B$1:$B$5'})
-                # chart_pie.add_series({'values': '=Sheet1!$C$1:$C$5'})
-                chart_pie.add_series({
-                    'categories': ['Sheet1', 1, 0, 5, 0],
-                    'values': ['Sheet1', 1, 4, 5, 4],
-                    'data_labels': {
-                        'legend_key': True,
-                        'category': True,
-                        'value': True,
-                        'percentage': True
-                    },
-                    'name': 'Belekas'
-                })
-                chart_pie.set_title({'name': 'Graph1'})
-                chart_pie.set_style(10)
-                worksheet.insert_chart("B10", chart_pie, {'x_scale': 2, 'y_scale': 2})
+
+        chart_pie = workbook.add_chart({'type': 'column'})
+        # chart_pie.add_series({'values': '=Sheet1!$B$1:$B$5'})
+        # chart_pie.add_series({'values': '=Sheet1!$C$1:$C$5'})
+        chart_pie.add_series({
+            'categories': ['Sheet1', 1, 0, 5, 0],
+            'values': ['Sheet1', 1, 4, 5, 4],
+            'data_labels': {
+                'legend_key': True,
+                'category': True,
+                'value': True,
+                'percentage': True
+            },
+            'name': 'Belekas'
+        })
+        chart_pie.set_title({'name': 'Graph1'})
+        chart_pie.set_style(10)
+        worksheet.insert_chart("B10", chart_pie, {'x_scale': 2, 'y_scale': 2})
+
     # workbook.close()
 
     # varied_array = [1, 2.99, 'text', (1, 9), [1, 2], {'names': 200000}, {1, 2, 3}, None, True, False, datetime.strptime('2011-04-01', '%Y-%m-%d')]
