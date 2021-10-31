@@ -1,0 +1,10 @@
+{
+    "pets": [
+        {
+            "name": "Charlie",
+            "species": "Unicorn",
+            "birthYear": 2019,
+            "photo": "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
+        }
+    ]
+}

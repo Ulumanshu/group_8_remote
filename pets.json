@@ -20,11 +20,23 @@
       "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
     },
     {
+      "name" : "Rawr",
+      "species" : "Tiger",
+      "birthYear" : 2019,
+      "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
+    },
+    {
       "name" : "Meowsalot",
       "species" : "Cat",
       "favFoods" : ["tuna", "catnip", "celery"],
       "birthYear" : 2012,
       "photo" : "https://learnwebcode.github.io/json-example/images/cat-1.jpg"
+    },
+     {
+      "name" : "Charlie",
+      "species" : "Unicorn",
+      "birthYear" : 2019,
+      "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
     }
   ]
 }
