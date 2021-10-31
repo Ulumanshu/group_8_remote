@@ -29,6 +29,19 @@ if __name__ == "__main__":
     for species in species_list:
         species_dict = dict()
         species_dict['pets'] = list()
+        '''
+        species_dict['pets'] = list() sukuria  {"pets": []} lista kuris yra raktazodzio 'pets' reiksme,
+        veliau i ji sudedami gyvunu objektai (dict kalses)
+        {
+            "pets": [
+                {
+                    "name": "Purrsloud",
+                    "species": "Cat",
+                    "favFoods": ["wet food", "dry food", "<strong>any</strong> food"],
+                    "birthYear": 2016,
+                    "photo": "https://learnwebcode.github.io/json-example/images/cat-2.jpg"
+                }, ...
+        '''
         key_for_split = (species, species_dict)
         split_keys.append(key_for_split)
 
