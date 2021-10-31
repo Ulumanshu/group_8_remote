@@ -40,7 +40,9 @@ if __name__ == "__main__":
                     "favFoods": ["wet food", "dry food", "<strong>any</strong> food"],
                     "birthYear": 2016,
                     "photo": "https://learnwebcode.github.io/json-example/images/cat-2.jpg"
-                }, ...
+                }, ... (daug petu)
+            ],
+        {
         '''
         key_for_split = (species, species_dict)
         split_keys.append(key_for_split)
