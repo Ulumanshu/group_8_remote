@@ -7,11 +7,11 @@ data = {
 }
 
 # # Saving to pickle
-# with open('data.pickle', 'wb') as f:
+# with open('data2.pickle', 'wb') as f:
 #     pickle.dump(data, f)
 
 
 # Loading from pickle
-with open('data.pickle', 'rb') as f:
+with open('data2.pickle', 'rb') as f:
     data = pickle.load(f)
 print(data)
