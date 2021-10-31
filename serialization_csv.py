@@ -1,6 +1,7 @@
 import csv
 
 # Writing to csv
+# open("employees.csv", 'a') mode 'a' selected here, means that new data is added to file, not overwriten
 with open("employees.csv", 'a') as out_file:
     writer = csv.writer(out_file)
     writer.writerow(["Name", "Salary"])
