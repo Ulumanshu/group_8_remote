@@ -37,6 +37,13 @@
       "species" : "Unicorn",
       "birthYear" : 2019,
       "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
+    },
+      {
+      "name" : "Matilda",
+      "species" : "Cat",
+      "favFoods" : ["tuna", "catnip", "celery"],
+      "birthYear" : 2016,
+      "photo" : "https://learnwebcode.github.io/json-example/images/cat-1.jpg"
     }
   ]
 }

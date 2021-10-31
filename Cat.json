@@ -12,6 +12,17 @@
             "photo": "https://learnwebcode.github.io/json-example/images/cat-2.jpg"
         },
         {
+            "name": "Matilda",
+            "species": "Cat",
+            "favFoods": [
+                "tuna",
+                "catnip",
+                "celery"
+            ],
+            "birthYear": 2016,
+            "photo": "https://learnwebcode.github.io/json-example/images/cat-1.jpg"
+        },
+        {
             "name": "Meowsalot",
             "species": "Cat",
             "favFoods": [

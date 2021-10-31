@@ -57,6 +57,11 @@ if __name__ == "__main__":
             if pet_species == species_name:
                 species_dictionary['pets'].append(pet)
         print(split_key, species_name, species_dictionary)
+        species_dictionary['pets'] = sorted(
+            species_dictionary['pets'],
+            key=lambda pet_dict: (pet_dict.get('name', '')[0], pet_dict.get('birthYear', 0)),
+            reverse=True
+        )
 
         # Iraso pitono objekta i json faila, suformatuoja objekta (kabutes, atstumai, etc.) kad atitiktu json formata
         with open(f"{species_name}.json", 'w') as out_file:
