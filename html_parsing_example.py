@@ -8,7 +8,7 @@ def sort_complicated_stuff(some_tuple_from_big_list):
     for symbol in first_member:
         if symbol.isdigit():
             char_digits += symbol
-    print(char_digits)
+    # print(char_digits)
     if not char_digits:
         char_digits += '0'
 
