@@ -39,8 +39,8 @@ class EXS:
         # Randam exelio eilutes pagal ta lauka
         for uniq_parameter in unique_parameters:
             parameter_lines = [ln for ln in self.lines if getattr(ln, parameter) == uniq_parameter]
-            region_object = report_obj(parameter_lines, name=uniq_parameter, parent_total=self.total_sold)
-            res.append(region_object)
+            new_object = report_obj(parameter_lines, name=uniq_parameter, parent_total=self.total_sold)
+            res.append(new_object)
 
         return res
 
@@ -55,6 +55,33 @@ class EXS:
     def exs_item(self):
         rep_objects = self.sort_by_field(parameter='product', report_obj=EXS_Item)
         self.items = rep_objects
+
+    def self_as_dict(self):
+        res = dict()
+        res['name'] = self.name
+        res['parent_total'] = self.parent_total
+        res['total_percent'] = self.total_percent
+        res['revenue'] = self.total_sold
+
+        print(res)
+        return res
+
+    def self_as_dict_deep(self):
+        res = dict()
+        res['regions'] = list()
+        res['items'] = list()
+        res['representatives'] = list()
+
+        for reg in self.regions:
+            res['regions'].append(reg.self_as_dict())
+
+        for it in self.items:
+            res['items'].append(it.self_as_dict())
+
+        for rep in self.representatives:
+            res['representatives'].append(rep.self_as_dict())
+
+        return res
 
 
 class EXS_Region(EXS):

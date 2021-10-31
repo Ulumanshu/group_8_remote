@@ -42,6 +42,7 @@ big_list = [
         'speed': 10,
     },
 ]
+
 # Uzdavinys:
     # Surusiuoti sarasa trim budais:
     # 1. Pagal name pirma raide A virsuj, amzius nuo didelio iki mazo, greitis nuo mazo iki didelio.
