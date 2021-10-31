@@ -13,6 +13,12 @@
       "birthYear" : 2008,
       "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
     },
+     {
+      "name" : "EATSALOT",
+      "species" : "Dog",
+      "birthYear" : 2019,
+      "photo" : "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
+    },
     {
       "name" : "Meowsalot",
       "species" : "Cat",
