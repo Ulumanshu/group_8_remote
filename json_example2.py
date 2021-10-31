@@ -7,19 +7,24 @@ if __name__ == "__main__":
     with open("pets.json") as in_file:
         data = json.load(in_file)
 
-    print(data['pets'])
+    # print(data['pets'])
     all_pets = data['pets']
 
     # Uzduotis:
     # ishkirti all_pets kintamaji tipas list() i dvi dalis, irgi tipo dict(), vienoje tik sunys, kitoje tik kates,
     # ir irasyti i skirtingus json failus
     # cats_dict = dict()  # dict() - {}, list() - [], tuple() - () dict(), list(), tuple(1, 2, )
-    # dogs_dict = dict()
-    # cats_dict['pets'] = list()
-    # dogs_dict['pets'] = list()
 
-    # split_keys = [('Cat', cats_dict), ('Dog', dogs_dict)]
-    species_list = ['Cat', 'Dog', 'Tiger', 'Unicorn']
+    species_list = set()
+    for pet_ in all_pets:
+        current_species = pet_.get('species', '') or ''
+        species_list.add(current_species)
+        print('PILDOMAS SETAS: ', species_list)
+
+    print(species_list)
+    species_list = list(species_list)
+    print(species_list)
+
     split_keys = list()
     for species in species_list:
         species_dict = dict()
