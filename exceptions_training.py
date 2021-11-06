@@ -1,8 +1,7 @@
 class ConvertionError(Exception):
     """
-
     Attributes:
-        salary -- input salary which caused the error
+        convertable -- input convertable which caused the error
         message -- explanation of the error
     """
 
