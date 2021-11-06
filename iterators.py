@@ -45,3 +45,9 @@ for elem in lst:
 iter = PrimeIterator(100)
 for elem in iter:
     print(elem)
+
+list_iter = list(lst)[:5]
+print(list_iter)
+#
+# list_iter = iter[:5]
+# print(list_iter)
