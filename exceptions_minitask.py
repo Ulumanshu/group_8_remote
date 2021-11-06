@@ -2,6 +2,7 @@ from string import digits, ascii_letters, ascii_uppercase, ascii_lowercase
 
 # 1. Sugeneruoti nauja lista kur butu einamas narys padelintas is sekancio nario, * passktinis is pirmo
 # * Naudokite for cikla su su try except
+# * naudokite for nr, elem in enumerate(data_array) sekantis narys data_array[nr +1]
 # 2. Susumuoti naujo listo narius.
 
 data_array = [1, '666', 56, 48, '66.78', '9,5', 10, 0.99, 0, '0,0', 'k5', '123', '52,54k8']
