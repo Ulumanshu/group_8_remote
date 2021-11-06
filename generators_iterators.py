@@ -36,6 +36,7 @@ def prime_former(n):
 
     return res
 
+
 gen = prime_generator(10)
 print(type(gen))
 for elem in gen:
@@ -46,4 +47,3 @@ formed = prime_former(10)
 for elem_f in formed:
     a = input("Continue: ")
     print(elem_f)
-
