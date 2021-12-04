@@ -140,7 +140,8 @@ def client_code(handler: Handler, tokens: list[str]) -> None:
 # The Client
 # The sentence complies with a simple grammar of
 # Number -> Operator -> Number -> etc,
-SENTENCE = "5 + 4 - 3 + 7 - 2"
+
+SENTENCE = "5 + 4 - 3 + 7 - 2 + 1 - 4 - 9 - 1"
 
 
 if __name__ == "__main__":
@@ -154,6 +155,7 @@ if __name__ == "__main__":
     AST_ROOT = client_code(addhandler, TOKENS)
 
     print(AST_ROOT)
-
     # Print out a representation of the AST_ROOT
     print(AST_ROOT.interpret())
+
+    # padaryti, kad AST_ROOT matytusi ne kaip (-1 Subtract 1), o kaip visos veiksmu sekos aprasymas.
