@@ -18,6 +18,7 @@ class Handler(ABC):
     def handle(self, request, variables) -> Optional[str]:
         pass
 
+
 class AbstractHandler(Handler):
     """
     The default chaining behavior can be implemented inside a base handler
@@ -34,7 +35,7 @@ class AbstractHandler(Handler):
         return handler
 
     @abstractmethod
-    def handle(self, request: Any, variables) -> str:
+    def handle(self, request: Any, variables) -> AbstractExpression:
         if self._next_handler:
             return self._next_handler.handle(request, variables)
 
@@ -44,17 +45,17 @@ class AbstractHandler(Handler):
 class AdditionHandler(AbstractHandler):
     def handle(self, request: Any, variables) -> AbstractExpression:
         if request == "+":
-            return Add(variables[0], variables[1])
+            return Add(Number(variables[0]), Number(variables[1]))
         else:
-            return super().handle(request, variables)
+            return super(AdditionHandler, self).handle(request, variables)
 
 
 class SubtractionHandler(AbstractHandler):
     def handle(self, request: Any, variables) -> AbstractExpression:
         if request == "-":
-            return Subtract(variables[0], variables[1])
+            return Subtract(Number(variables[0]), Number(variables[1]))
         else:
-            return super().handle(request, variables)
+            return super(SubtractionHandler, self).handle(request, variables)
 
 
 class AbstractExpression:
@@ -71,7 +72,10 @@ class Number(AbstractExpression):
     "Terminal Expression"
 
     def __init__(self, value):
-        self.value = int(value)
+        if isinstance(value, str):
+            self.value = int(value)
+        if isinstance(value, AbstractExpression):
+            self.value = value.interpret()
 
     def interpret(self):
         return self.value
@@ -88,6 +92,7 @@ class Add(AbstractExpression):
         self.right = right
 
     def interpret(self):
+        print('LR', self.left, self.right)
         return self.left.interpret() + self.right.interpret()
 
     def __repr__(self):
@@ -125,7 +130,13 @@ def client_code(handler: Handler, tokens: list[str]) -> None:
         numbers.pop(0)
         numbers.pop(0)
         numbers.insert(0, result)
-    return numbers.pop(0)
+        print(result, type(result), numbers)
+
+    final = numbers.pop(0)
+    print(final)
+    return final
+
+
 # The Client
 # The sentence complies with a simple grammar of
 # Number -> Operator -> Number -> etc,
@@ -134,7 +145,6 @@ SENTENCE = "5 + 4 - 3 + 7 - 2"
 
 if __name__ == "__main__":
     TOKENS = SENTENCE.split(" ")
-
 
     addhandler = AdditionHandler()
     subtracthandler = SubtractionHandler()
