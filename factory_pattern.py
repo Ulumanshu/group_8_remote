@@ -76,3 +76,5 @@ serializer_xml = factory.get_serializer('XML')
 print(song.serialize(serializer))
 print(song.serialize(serializer_xml))
 
+# Minitask padaryti factory objektus max 3 instancai kad butu, jei bus kuriamas 4tas, kad mestu klaida.
+
