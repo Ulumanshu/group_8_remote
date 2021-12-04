@@ -59,15 +59,18 @@ class SerializerFactory:
         else:
             raise ValueError(format)
 
+
 # Inicijuojam daina su duomenim
 song = Song('1', 'Water of Love', 'Dire Straits')
 
+######################## FACTORY #############################################################################
 # Sukuriame serialaizeriu fabrika (kai kreipsimes i  jo get_serializer() metoda gausim serialaizerio instance)
 factory = SerializerFactory()
 
 # Pasidarom tiek serialaizerio instancu kiek reikia formatu
 serializer = factory.get_serializer('JSON')
 serializer_xml = factory.get_serializer('XML')
+##############################################################################################################
 
 # Dainos serialaiz metodui reikia serialaizerio klases kuri moka paversti daina i reikiama formata
 print(song.serialize(serializer))
