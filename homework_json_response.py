@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 
 import openpyxl
 from homework_1_excell import AtaskaituKlase, ExelioEilute
@@ -16,10 +17,38 @@ class ModifiedAtaskaituKlase(AtaskaituKlase):
         res = []
         report_objects = keyword_map.get(keyword, []) or []
         for rep_obj in report_objects:
+            # subres = dict()
             rep_obj.generate_stats()
-            res.append(rep_obj.self_as_dict_deep())
+            pradres = rep_obj.self_as_dict_deep()
+
+            naujas_rezult = pradres.pop(keyword)[0]
+            naujas_rezult["other_data"] = pradres
+            # report_name = naujas_rezult and naujas_rezult[0].get("name") or ''
+            # subres[report_name] = naujas_rezult
+            # subres[report_name].append(rep_obj.self_as_dict_deep())
+            res.append(naujas_rezult)
+
+            naujas_rezult = rep_obj.self_as_dict_deep().get(keyword)
+            print(naujas_rezult)
 
         return res
+
+    def create_json_file(self, user_inputas):
+        data_for_json = []
+        if user_inputas == 'regions':
+            data_for_json = ataskaitu_generatorius.get_requested_stats('regions')
+            pprint(data_for_json, indent=4)
+
+        elif user_inputas == 'items':
+            data_for_json = ataskaitu_generatorius.get_requested_stats('items')
+            pprint(data_for_json, indent=4)
+
+        elif user_inputas == 'representatives':
+            data_for_json = ataskaitu_generatorius.get_requested_stats('representatives')
+            pprint(data_for_json, indent=4)
+
+        with open(f"{user_inputas}.json", "w") as out_file:
+            json.dump(data_for_json, out_file, indent=4)
 
 
 if __name__ == "__main__":
@@ -40,7 +69,7 @@ if __name__ == "__main__":
             values_only=True
     ):
         ln_count += 1
-        print(xlsx_line)
+        # print(xlsx_line)
         eilutes_data = xlsx_line[0]
         eilutes_salis = xlsx_line[1]
         eilutes_pardavejas = xlsx_line[2]
@@ -62,26 +91,35 @@ if __name__ == "__main__":
 
     ataskaitu_generatorius = ModifiedAtaskaituKlase(line_object_list)
     ataskaitu_generatorius.generate_stats()
+
+    user_inputas = input("Įveskite norimą ataskaitą: ")
+    user_inputas = str(user_inputas)
+
+    ataskaitu_generatorius.create_json_file(user_inputas)
+
     # Pavyzdys kaip naudoti get_requested_stats
-    # data_for_json = ataskaitu_generatorius.get_requested_stats('regions')
-    # pprint(data_for_json, indent=4)
+    # if user_inputas == 'regions':
+    #     data_for_json = ataskaitu_generatorius.get_requested_stats('regions')
+    #     pprint(data_for_json, indent=4)
+    #
+    # elif user_inputas == 'items':
+    #     data_for_json = ataskaitu_generatorius.get_requested_stats('items')
+    #     pprint(data_for_json, indent=4)
+    #
+    # elif user_inputas == 'representatives':
+    #     data_for_json = ataskaitu_generatorius.get_requested_stats('representatives')
+    #     pprint(data_for_json, indent=4)
 
-    data_for_json = ataskaitu_generatorius.get_requested_stats('items')
-    pprint(data_for_json, indent=4)
+    '''Uzduotis sukurti zemiau funcija kuri gavusi raktazodi
+    viena is siu ['regions', 'items', 'representatives'],
+    ishsaugotu duomenu ataskaitos dictionary json formatu i failiuka, su jusu pasirinktu pavadinimu
+    sukurta funcija paleisti ir parodyti man koki gavoji jsonai
 
-    # data_for_json = ataskaitu_generatorius.get_requested_stats('representatives')
-    # pprint(data_for_json, indent=4)
-
-    # Uzduotis sukurti zemiau funcija kuri gavusi raktazodi
-    # viena is siu ['regions', 'items', 'representatives'],
-    # ishsaugotu duomenu ataskaitos dictionary json formatu i failiuka, su jusu pasirinktu pavadinimu
-    # sukurta funcija paleisti ir parodyti man koki gavoji jsonai
-
-    # PS
-    # Uzduociai atlikti yrasiau i EXS klase dvi funkcijas kad gautume dicta (self_as_dict_deep, self_as_dict)
-    # taipat ikeliau papildoma metoda get_requested_stats i AtaskaituKlase ja paveldedamas
-    # naudokites get_requested_stats savo funcijoje jei patiems bus per sunku.
-    # uzduoties esme ishmokti panaudoti get_requested_stats, ir jos resultatus uzseivinti i json failus.
+    PS
+    Uzduociai atlikti yrasiau i EXS klase dvi funkcijas kad gautume dicta (self_as_dict_deep, self_as_dict)
+    taipat ikeliau papildoma metoda get_requested_stats i AtaskaituKlase ja paveldedamas
+    naudokites get_requested_stats savo funcijoje jei patiems bus per sunku.
+    uzduoties esme ishmokti panaudoti get_requested_stats, ir jos resultatus uzseivinti i json failus.'''
 
     # def self_as_dict(self):
     #     res = dict()
@@ -109,8 +147,6 @@ if __name__ == "__main__":
     #         res['representatives'].append(rep.self_as_dict())
     #
     #     return res
-
-
 
 
 

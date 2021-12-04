@@ -18,6 +18,8 @@ class Song:
 
 
 class JsonSerializer:
+    _instances = []
+
     def __init__(self):
         self._current_object = None
 
@@ -32,8 +34,20 @@ class JsonSerializer:
     def to_str(self):
         return json.dumps(self._current_object)
 
+    @classmethod
+    def __new__(cls, *args, **kwargs):
+        print(cls._instances)
+        if len(cls._instances) >= 3:
+            x = 'More than %s exists!' % len(cls._instances)
+            raise Exception(x)
+        new_object = object.__new__(cls)
+        cls._instances.append(new_object)
+        return new_object
+
 
 class XmlSerializer:
+    _instances = []
+
     def __init__(self):
         self._element = None
 
@@ -46,6 +60,16 @@ class XmlSerializer:
 
     def to_str(self):
         return et.tostring(self._element, encoding='unicode')
+
+    @classmethod
+    def __new__(cls, *args, **kwargs):
+        print(cls._instances)
+        if len(cls._instances) >= 3:
+            x = 'More than %s exists!' % len(cls._instances)
+            raise Exception(x)
+        new_object = object.__new__(cls)
+        cls._instances.append(new_object)
+        return new_object
 
 
 class SerializerFactory:
@@ -77,4 +101,12 @@ print(song.serialize(serializer))
 print(song.serialize(serializer_xml))
 
 # Minitask padaryti factory objektus max 3 instancai kad butu, jei bus kuriamas 4tas, kad mestu klaida.
+
+serializer2 = factory.get_serializer('JSON')
+serializer_xml2 = factory.get_serializer('XML')
+
+serializer3 = factory.get_serializer('JSON')
+serializer_xml3 = factory.get_serializer('XML')
+
+serializer4 = factory.get_serializer('JSON')
 

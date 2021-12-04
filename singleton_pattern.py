@@ -1,18 +1,18 @@
-# class SingletonType(type):
-#     _instances = {}
-#
-#     def __call__(cls, *args, **kwargs):
-#         print('INSTANCES', cls._instances, type(cls._instances))
-#         if cls not in cls._instances:
-#             cls._instances[cls] = super(SingletonType, cls).__call__(*args, **kwargs)
-#         return cls._instances[cls]
-#
-#
-# class SingletonClass(metaclass=SingletonType):
-#     pass
+class SingletonType(type):
+    _instances = {}
 
-class SingletonClass(object):  # NB must be subclass of object to use __new__
-    instance = None
+    def __call__(cls, *args, **kwargs):
+        print('INSTANCES', cls._instances, type(cls._instances))
+        if cls not in cls._instances:
+            cls._instances[cls] = super(SingletonType, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+
+class SingletonClass(metaclass=SingletonType):
+    pass
+
+class SingletonClass(object):   # NB must be subclass of object to use __new__
+    instance = None             # Singleton naudojamas, kad programoje vienas instance (pasirinktas) būtų naudojamas tik vieną kartą
 
     @classmethod
     def __new__(cls, *args, **kwargs):
