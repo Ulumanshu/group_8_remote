@@ -64,6 +64,13 @@ print(SENTENCE)
 TOKENS = SENTENCE.split(" ")
 print(TOKENS)
 
+# Si Dalis negrazi ir manualine
+# sukurti client_code funkcija, panasia i chain_of_responsibility faile esancia
+# ji turetu eiti per tokenus ir skumonpiliuoti AST kur pagal chain of responsibility paterna
+# bus parenkamas teisingas handleris tokenui, kuris i AST lista ikels teisinga objekta
+# grazins paskutini AST elementa
+
+##########################################################################################
 # Manually Creating an Abstract Syntax Tree from the tokens
 # AST: list[AbstractExpression] = []  # Python 3.9
 AST = []  # Python 3.8 or earlier
@@ -74,6 +81,8 @@ AST.append(Subtract(AST[2], Number(TOKENS[8])))        # ^ - 2
 
 # Use the final AST row as the root node.
 AST_ROOT = AST.pop()
+#############################################################################################
+
 
 # Interpret recursively through the full AST starting from the root.
 print(AST_ROOT.interpret())
