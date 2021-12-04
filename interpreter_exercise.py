@@ -29,9 +29,7 @@ class AbstractHandler(Handler):
 
     def set_next(self, handler: Handler) -> Handler:
         self._next_handler = handler
-        # Returning a handler from here will let us link handlers in a
-        # convenient way like this:
-        # monkey.set_next(squirrel).set_next(dog)
+
         return handler
 
     @abstractmethod
@@ -75,10 +73,16 @@ class Number(AbstractExpression):
         if isinstance(value, str):
             self.value = int(value)
         if isinstance(value, AbstractExpression):
-            self.value = value.interpret()
+            self.value = value
 
     def interpret(self):
-        return self.value
+        res = False
+        if isinstance(self.value, int):
+            res = self.value
+        if isinstance(self.value, AbstractExpression):
+            res = self.value.interpret()
+
+        return res
 
     def __repr__(self):
         return str(self.value)
@@ -92,7 +96,6 @@ class Add(AbstractExpression):
         self.right = right
 
     def interpret(self):
-        print('LR', self.left, self.right)
         return self.left.interpret() + self.right.interpret()
 
     def __repr__(self):
@@ -113,7 +116,7 @@ class Subtract(AbstractExpression):
         return f"({self.left} Subtract {self.right})"
 
 
-def client_code(handler: Handler, tokens: list[str]) -> None:
+def client_code(handler: Handler, tokens: list[str]) -> AbstractExpression:
     """
     The client code is usually suited to work with a single handler. In most
     cases, it is not even aware that the handler is part of a chain.
@@ -124,38 +127,41 @@ def client_code(handler: Handler, tokens: list[str]) -> None:
     print(numbers)
 
     for element in operators:
-        print(element)
         variables = [numbers[0], numbers[1]]
         result = handler.handle(element, variables)
         numbers.pop(0)
         numbers.pop(0)
         numbers.insert(0, result)
-        print(result, type(result), numbers)
 
     final = numbers.pop(0)
-    print(final)
+
     return final
 
 
-# The Client
-# The sentence complies with a simple grammar of
-# Number -> Operator -> Number -> etc,
-
-SENTENCE = "5 + 4 - 3 + 7 - 2 + 1 - 4 - 9 - 1"
-
-
 if __name__ == "__main__":
-    TOKENS = SENTENCE.split(" ")
+    # The Client
+    # The sentence complies with a simple grammar of
+    # Number -> Operator -> Number -> etc,
 
+    SENTENCE = "5 + 4 - 3 + 7 - 2 + 1 - 4 - 9 - 1 + 5"
+    TOKENS = SENTENCE.split(" ")
     addhandler = AdditionHandler()
     subtracthandler = SubtractionHandler()
 
+    # Make handler chain
     addhandler.set_next(subtracthandler)
 
+    # Activate clent code
     AST_ROOT = client_code(addhandler, TOKENS)
 
-    print(AST_ROOT)
     # Print out a representation of the AST_ROOT
+    print(AST_ROOT)
     print(AST_ROOT.interpret())
 
-    # padaryti, kad AST_ROOT matytusi ne kaip (-1 Subtract 1), o kaip visos veiksmu sekos aprasymas.
+    # padaryti, kad AST_ROOT matytusi ne kaip (-1 Subtract 1), o kaip visos veiksmu sekos aprasymas. - Done
+    ####################################################################################################################
+    # UZD 2: padaryti handlerius daugybai ir dalybai, bei leisti nuskaityti skaiciu is daugiau nei vieno skaitmens,
+    # bei skaiciu su kableliu
+    ####################################################################################################################
+
+    ####################################################################################################################
