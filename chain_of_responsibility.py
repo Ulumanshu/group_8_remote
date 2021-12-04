@@ -101,3 +101,5 @@ if __name__ == "__main__":
 
     print("Subchain: Squirrel > Dog")
     client_code(squirrel)
+
+    # minitask 2: create a handler for coffee, and add it to first chain
