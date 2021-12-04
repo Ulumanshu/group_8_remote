@@ -71,6 +71,14 @@ class DogHandler(AbstractHandler):
             return super().handle(request)
 
 
+class HumanHandler(AbstractHandler):
+    def handle(self, request: Any) -> str:
+        if request == "Cup of coffee":
+            return f"Human: I'll drink the {request}"
+        else:
+            return super().handle(request)
+
+
 def client_code(handler: Handler) -> None:
     """
     The client code is usually suited to work with a single handler. In most
@@ -90,8 +98,9 @@ if __name__ == "__main__":
     monkey = MonkeyHandler()
     squirrel = SquirrelHandler()
     dog = DogHandler()
+    human = HumanHandler()
 
-    monkey.set_next(squirrel).set_next(dog)
+    monkey.set_next(squirrel).set_next(dog).set_next(human)
 
     # The client should be able to send a request to any handler, not just the
     # first one in the chain.
@@ -101,3 +110,7 @@ if __name__ == "__main__":
 
     print("Subchain: Squirrel > Dog")
     client_code(squirrel)
+    print("\n")
+
+    print("Subchain: Dog > Human")
+    client_code(dog)
