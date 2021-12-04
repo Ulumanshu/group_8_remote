@@ -107,10 +107,16 @@ if __name__ == "__main__":
     The client code can parameterize an invoker with any commands.
     """
 
+    # Invoker - klase proceso valdiklis
     invoker = Invoker()
+    # SimpleCommand - klase kurios objektai igyvendina paprastu operaciju sekas
     invoker.set_on_start(SimpleCommand("Say Hi!"))
+    # Klase Receiver - biznio logikos klase, turinti metodus sau apdoroti
     receiver = Receiver()
+    # Complex Command - klase kurios objektai igyvendina operaciju sekas, kuriose dalyvauja biznio logikos
+    # objektu metodai
     invoker.set_on_finish(ComplexCommand(
         receiver, "Send email", "Save report"))
 
+    # proceso valdiklio metodas do_something_important metodas inicijuoja visa suderinta Invoker eiga
     invoker.do_something_important()
