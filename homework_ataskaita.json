@@ -1,0 +1,342 @@
+[
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 2045.22,
+                "total_percent": 26.39,
+                "revenue": 539.73
+            },
+            {
+                "name": "East",
+                "parent_total": 2045.22,
+                "total_percent": 66.22,
+                "revenue": 1354.25
+            },
+            {
+                "name": "West",
+                "parent_total": 2045.22,
+                "total_percent": 7.39,
+                "revenue": 151.24
+            }
+        ],
+        "items": [
+            {
+                "name": "Pen",
+                "parent_total": 2045.22,
+                "total_percent": 100.0,
+                "revenue": 2045.22
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jones",
+                "parent_total": 2045.22,
+                "total_percent": 28.13,
+                "revenue": 575.36
+            },
+            {
+                "name": "Howard",
+                "parent_total": 2045.22,
+                "total_percent": 23.42,
+                "revenue": 479.04
+            },
+            {
+                "name": "Sorvino",
+                "parent_total": 2045.22,
+                "total_percent": 7.39,
+                "revenue": 151.24
+            },
+            {
+                "name": "Gill",
+                "parent_total": 2045.22,
+                "total_percent": 26.39,
+                "revenue": 539.73
+            },
+            {
+                "name": "Parent",
+                "parent_total": 2045.22,
+                "total_percent": 14.66,
+                "revenue": 299.85
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 4169.87,
+                "total_percent": 58.07,
+                "revenue": 2421.39
+            },
+            {
+                "name": "East",
+                "parent_total": 4169.87,
+                "total_percent": 41.93,
+                "revenue": 1748.48
+            }
+        ],
+        "items": [
+            {
+                "name": "Pen Set",
+                "parent_total": 4169.87,
+                "total_percent": 100.0,
+                "revenue": 4169.87
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jones",
+                "parent_total": 4169.87,
+                "total_percent": 13.55,
+                "revenue": 565.22
+            },
+            {
+                "name": "Jardine",
+                "parent_total": 4169.87,
+                "total_percent": 5.98,
+                "revenue": 249.5
+            },
+            {
+                "name": "Morgan",
+                "parent_total": 4169.87,
+                "total_percent": 16.47,
+                "revenue": 686.95
+            },
+            {
+                "name": "Parent",
+                "parent_total": 4169.87,
+                "total_percent": 28.38,
+                "revenue": 1183.26
+            },
+            {
+                "name": "Kivell",
+                "parent_total": 4169.87,
+                "total_percent": 35.61,
+                "revenue": 1484.94
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 9577.65,
+                "total_percent": 60.17,
+                "revenue": 5762.63
+            },
+            {
+                "name": "East",
+                "parent_total": 9577.65,
+                "total_percent": 26.47,
+                "revenue": 2535.66
+            },
+            {
+                "name": "West",
+                "parent_total": 9577.65,
+                "total_percent": 13.36,
+                "revenue": 1279.36
+            }
+        ],
+        "items": [
+            {
+                "name": "Binder",
+                "parent_total": 9577.65,
+                "total_percent": 100.0,
+                "revenue": 9577.65
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jones",
+                "parent_total": 9577.65,
+                "total_percent": 8.97,
+                "revenue": 858.76
+            },
+            {
+                "name": "Jardine",
+                "parent_total": 9577.65,
+                "total_percent": 20.19,
+                "revenue": 1933.95
+            },
+            {
+                "name": "Howard",
+                "parent_total": 9577.65,
+                "total_percent": 0.6,
+                "revenue": 57.71
+            },
+            {
+                "name": "Thompson",
+                "parent_total": 9577.65,
+                "total_percent": 11.9,
+                "revenue": 1139.43
+            },
+            {
+                "name": "Sorvino",
+                "parent_total": 9577.65,
+                "total_percent": 1.46,
+                "revenue": 139.93
+            },
+            {
+                "name": "Morgan",
+                "parent_total": 9577.65,
+                "total_percent": 2.63,
+                "revenue": 251.72
+            },
+            {
+                "name": "Gill",
+                "parent_total": 9577.65,
+                "total_percent": 11.83,
+                "revenue": 1132.74
+            },
+            {
+                "name": "Smith",
+                "parent_total": 9577.65,
+                "total_percent": 13.63,
+                "revenue": 1305.0
+            },
+            {
+                "name": "Andrews",
+                "parent_total": 9577.65,
+                "total_percent": 1.46,
+                "revenue": 139.72
+            },
+            {
+                "name": "Parent",
+                "parent_total": 9577.65,
+                "total_percent": 16.91,
+                "revenue": 1619.19
+            },
+            {
+                "name": "Kivell",
+                "parent_total": 9577.65,
+                "total_percent": 10.44,
+                "revenue": 999.5
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 1700.0,
+                "total_percent": 51.47,
+                "revenue": 875.0
+            },
+            {
+                "name": "West",
+                "parent_total": 1700.0,
+                "total_percent": 48.53,
+                "revenue": 825.0
+            }
+        ],
+        "items": [
+            {
+                "name": "Desk",
+                "parent_total": 1700.0,
+                "total_percent": 100.0,
+                "revenue": 1700.0
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Kivell",
+                "parent_total": 1700.0,
+                "total_percent": 36.76,
+                "revenue": 625.0
+            },
+            {
+                "name": "Sorvino",
+                "parent_total": 1700.0,
+                "total_percent": 48.53,
+                "revenue": 825.0
+            },
+            {
+                "name": "Smith",
+                "parent_total": 1700.0,
+                "total_percent": 14.71,
+                "revenue": 250.0
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 2135.14,
+                "total_percent": 72.14,
+                "revenue": 1540.32
+            },
+            {
+                "name": "East",
+                "parent_total": 2135.14,
+                "total_percent": 17.03,
+                "revenue": 363.7
+            },
+            {
+                "name": "West",
+                "parent_total": 2135.14,
+                "total_percent": 10.82,
+                "revenue": 231.12
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 2135.14,
+                "total_percent": 100.0,
+                "revenue": 2135.14
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jones",
+                "parent_total": 2135.14,
+                "total_percent": 17.03,
+                "revenue": 363.7
+            },
+            {
+                "name": "Jardine",
+                "parent_total": 2135.14,
+                "total_percent": 29.45,
+                "revenue": 628.74
+            },
+            {
+                "name": "Thompson",
+                "parent_total": 2135.14,
+                "total_percent": 2.98,
+                "revenue": 63.68
+            },
+            {
+                "name": "Sorvino",
+                "parent_total": 2135.14,
+                "total_percent": 7.84,
+                "revenue": 167.44
+            },
+            {
+                "name": "Morgan",
+                "parent_total": 2135.14,
+                "total_percent": 21.03,
+                "revenue": 449.1
+            },
+            {
+                "name": "Smith",
+                "parent_total": 2135.14,
+                "total_percent": 4.05,
+                "revenue": 86.43
+            },
+            {
+                "name": "Gill",
+                "parent_total": 2135.14,
+                "total_percent": 3.63,
+                "revenue": 77.4
+            },
+            {
+                "name": "Andrews",
+                "parent_total": 2135.14,
+                "total_percent": 13.99,
+                "revenue": 298.65
+            }
+        ]
+    }
+]

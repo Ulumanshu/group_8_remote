@@ -53,6 +53,30 @@ class Subtract(AbstractExpression):
         return f"({self.left} Subtract {self.right})"
 
 
+class Multiply(AbstractExpression):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def interpret(self):
+        return self.left.interpret() * self.right.interpret()
+
+    def __repr__(self):
+        return f"({self.left} Multiply {self.right})"
+
+
+class Divide(AbstractExpression):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def interpret(self):
+        return self.left.interpret() / self.right.interpret()
+
+    def __repr__(self):
+        return f"({self.left} Divide {self.right})"
+
+
 # The Client
 # The sentence complies with a simple grammar of
 # Number -> Operator -> Number -> etc,
@@ -88,4 +112,16 @@ AST_ROOT = AST.pop()
 print(AST_ROOT.interpret())
 
 # Print out a representation of the AST_ROOT
+print(AST_ROOT)
+
+SENTENCE2 = "5 + 9 / 3"
+TOKENS2 = SENTENCE2.split(" ")
+
+AST = []
+AST.append(Add(Number(TOKENS2[0]), Number(TOKENS2[2])))  # 5 + 4
+AST.append(Divide(AST[0], Number(TOKENS2[4])))           # ^ / 3
+
+AST_ROOT = AST.pop()
+
+print(AST_ROOT.interpret())
 print(AST_ROOT)

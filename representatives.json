@@ -1,0 +1,414 @@
+[
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 1749.87,
+                "total_percent": 100.0,
+                "revenue": 1749.87
+            }
+        ],
+        "items": [
+            {
+                "name": "Pen",
+                "parent_total": 1749.87,
+                "total_percent": 30.84,
+                "revenue": 539.73
+            },
+            {
+                "name": "Binder",
+                "parent_total": 1749.87,
+                "total_percent": 64.73,
+                "revenue": 1132.74
+            },
+            {
+                "name": "Pencil",
+                "parent_total": 1749.87,
+                "total_percent": 4.42,
+                "revenue": 77.4
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Gill",
+                "parent_total": 1749.87,
+                "total_percent": 100.0,
+                "revenue": 1749.87
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "East",
+                "parent_total": 536.75,
+                "total_percent": 100.0,
+                "revenue": 536.75
+            }
+        ],
+        "items": [
+            {
+                "name": "Binder",
+                "parent_total": 536.75,
+                "total_percent": 10.75,
+                "revenue": 57.71
+            },
+            {
+                "name": "Pen",
+                "parent_total": 536.75,
+                "total_percent": 89.25,
+                "revenue": 479.04
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Howard",
+                "parent_total": 536.75,
+                "total_percent": 100.0,
+                "revenue": 536.75
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 3109.44,
+                "total_percent": 100.0,
+                "revenue": 3109.44
+            }
+        ],
+        "items": [
+            {
+                "name": "Binder",
+                "parent_total": 3109.44,
+                "total_percent": 32.14,
+                "revenue": 999.5
+            },
+            {
+                "name": "Pen Set",
+                "parent_total": 3109.44,
+                "total_percent": 47.76,
+                "revenue": 1484.94
+            },
+            {
+                "name": "Desk",
+                "parent_total": 3109.44,
+                "total_percent": 20.1,
+                "revenue": 625.0
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Kivell",
+                "parent_total": 3109.44,
+                "total_percent": 100.0,
+                "revenue": 3109.44
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 1641.43,
+                "total_percent": 100.0,
+                "revenue": 1641.43
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 1641.43,
+                "total_percent": 5.27,
+                "revenue": 86.43
+            },
+            {
+                "name": "Desk",
+                "parent_total": 1641.43,
+                "total_percent": 15.23,
+                "revenue": 250.0
+            },
+            {
+                "name": "Binder",
+                "parent_total": 1641.43,
+                "total_percent": 79.5,
+                "revenue": 1305.0
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Smith",
+                "parent_total": 1641.43,
+                "total_percent": 100.0,
+                "revenue": 1641.43
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "East",
+                "parent_total": 3102.3,
+                "total_percent": 100.0,
+                "revenue": 3102.3
+            }
+        ],
+        "items": [
+            {
+                "name": "Binder",
+                "parent_total": 3102.3,
+                "total_percent": 52.19,
+                "revenue": 1619.19
+            },
+            {
+                "name": "Pen Set",
+                "parent_total": 3102.3,
+                "total_percent": 38.14,
+                "revenue": 1183.26
+            },
+            {
+                "name": "Pen",
+                "parent_total": 3102.3,
+                "total_percent": 9.67,
+                "revenue": 299.85
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Parent",
+                "parent_total": 3102.3,
+                "total_percent": 100.0,
+                "revenue": 3102.3
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "East",
+                "parent_total": 2363.04,
+                "total_percent": 100.0,
+                "revenue": 2363.04
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 2363.04,
+                "total_percent": 15.39,
+                "revenue": 363.7
+            },
+            {
+                "name": "Pen Set",
+                "parent_total": 2363.04,
+                "total_percent": 23.92,
+                "revenue": 565.22
+            },
+            {
+                "name": "Binder",
+                "parent_total": 2363.04,
+                "total_percent": 36.34,
+                "revenue": 858.76
+            },
+            {
+                "name": "Pen",
+                "parent_total": 2363.04,
+                "total_percent": 24.35,
+                "revenue": 575.36
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jones",
+                "parent_total": 2363.04,
+                "total_percent": 100.0,
+                "revenue": 2363.04
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 2812.19,
+                "total_percent": 100.0,
+                "revenue": 2812.19
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 2812.19,
+                "total_percent": 22.36,
+                "revenue": 628.74
+            },
+            {
+                "name": "Pen Set",
+                "parent_total": 2812.19,
+                "total_percent": 8.87,
+                "revenue": 249.5
+            },
+            {
+                "name": "Binder",
+                "parent_total": 2812.19,
+                "total_percent": 68.77,
+                "revenue": 1933.95
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Jardine",
+                "parent_total": 2812.19,
+                "total_percent": 100.0,
+                "revenue": 2812.19
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "West",
+                "parent_total": 1203.11,
+                "total_percent": 100.0,
+                "revenue": 1203.11
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 1203.11,
+                "total_percent": 5.29,
+                "revenue": 63.68
+            },
+            {
+                "name": "Binder",
+                "parent_total": 1203.11,
+                "total_percent": 94.71,
+                "revenue": 1139.43
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Thompson",
+                "parent_total": 1203.11,
+                "total_percent": 100.0,
+                "revenue": 1203.11
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "West",
+                "parent_total": 1283.61,
+                "total_percent": 100.0,
+                "revenue": 1283.61
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 1283.61,
+                "total_percent": 13.04,
+                "revenue": 167.44
+            },
+            {
+                "name": "Desk",
+                "parent_total": 1283.61,
+                "total_percent": 64.27,
+                "revenue": 825.0
+            },
+            {
+                "name": "Binder",
+                "parent_total": 1283.61,
+                "total_percent": 10.9,
+                "revenue": 139.93
+            },
+            {
+                "name": "Pen",
+                "parent_total": 1283.61,
+                "total_percent": 11.78,
+                "revenue": 151.24
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Sorvino",
+                "parent_total": 1283.61,
+                "total_percent": 100.0,
+                "revenue": 1283.61
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 438.37,
+                "total_percent": 100.0,
+                "revenue": 438.37
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 438.37,
+                "total_percent": 68.13,
+                "revenue": 298.65
+            },
+            {
+                "name": "Binder",
+                "parent_total": 438.37,
+                "total_percent": 31.87,
+                "revenue": 139.72
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Andrews",
+                "parent_total": 438.37,
+                "total_percent": 100.0,
+                "revenue": 438.37
+            }
+        ]
+    },
+    {
+        "regions": [
+            {
+                "name": "Central",
+                "parent_total": 1387.77,
+                "total_percent": 100.0,
+                "revenue": 1387.77
+            }
+        ],
+        "items": [
+            {
+                "name": "Pencil",
+                "parent_total": 1387.77,
+                "total_percent": 32.36,
+                "revenue": 449.1
+            },
+            {
+                "name": "Pen Set",
+                "parent_total": 1387.77,
+                "total_percent": 49.5,
+                "revenue": 686.95
+            },
+            {
+                "name": "Binder",
+                "parent_total": 1387.77,
+                "total_percent": 18.14,
+                "revenue": 251.72
+            }
+        ],
+        "representatives": [
+            {
+                "name": "Morgan",
+                "parent_total": 1387.77,
+                "total_percent": 100.0,
+                "revenue": 1387.77
+            }
+        ]
+    }
+]

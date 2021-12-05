@@ -37,7 +37,7 @@ class AbstractHandler(Handler):
         if self._next_handler:
             return self._next_handler.handle(request, variables)
 
-        return None
+        # return None
 
 
 class AdditionHandler(AbstractHandler):
@@ -56,6 +56,21 @@ class SubtractionHandler(AbstractHandler):
             return super(SubtractionHandler, self).handle(request, variables)
 
 
+class MultiplicationHandler(AbstractHandler):
+    def handle(self, request: Any, variables) -> AbstractExpression:
+        if request == "*":
+            return Multiply(Number(variables[0]), Number(variables[1]))
+        else:
+            return super(MultiplicationHandler, self).handle(request, variables)
+
+
+class DivisionHandler(AbstractHandler):
+    def handle(self, request: Any, variables) -> AbstractExpression:
+        if request == "/":
+            return Divide(Number(variables[0]), Number(variables[1]))
+        else:
+            return super(DivisionHandler, self).handle(request, variables)
+
 class AbstractExpression:
     "All Terminal and Non-Terminal expressions will implement an `interpret` method"
     @staticmethod
@@ -71,13 +86,13 @@ class Number(AbstractExpression):
 
     def __init__(self, value):
         if isinstance(value, str):
-            self.value = int(value)
+            self.value = float(value)
         if isinstance(value, AbstractExpression):
             self.value = value
 
     def interpret(self):
         res = False
-        if isinstance(self.value, int):
+        if isinstance(self.value, float):
             res = self.value
         if isinstance(self.value, AbstractExpression):
             res = self.value.interpret()
@@ -116,13 +131,57 @@ class Subtract(AbstractExpression):
         return f"({self.left} Subtract {self.right})"
 
 
+class Multiply(AbstractExpression):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def interpret(self):
+        return self.left.interpret() * self.right.interpret()
+
+    def __repr__(self):
+        return f"({self.left} Multiply {self.right})"
+
+
+class Divide(AbstractExpression):
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def interpret(self):
+        if self.right.interpret() > 0:
+            res = self.left.interpret() / self.right.interpret()
+        else:
+            res = 0
+        print(self.left, self.right, res)
+        print(self.right.interpret() > 0)
+        return res
+
+    def __repr__(self):
+        return f"({self.left} Divide {self.right})"
+
+
+def extract_number(text_):
+    result = ""
+    for char in text_:
+        if char in digits:
+            result += char
+        elif char in [".", ","]:
+            result += "."
+        else:
+            continue
+    # print(text_, result)
+    return result
+
+
 def client_code(handler: Handler, tokens: list[str]) -> AbstractExpression:
     """
     The client code is usually suited to work with a single handler. In most
     cases, it is not even aware that the handler is part of a chain.
     """
-    operators = [n for n in tokens if n in ["+", "-"]]
-    numbers = [p for p in tokens if p in digits]
+
+    operators = [n for n in tokens if n in ["+", "-", "*", "/"]]
+    numbers = [extract_number(p) for p in tokens if p not in operators]
     print(operators)
     print(numbers)
 
@@ -143,24 +202,28 @@ if __name__ == "__main__":
     # The sentence complies with a simple grammar of
     # Number -> Operator -> Number -> etc,
 
-    SENTENCE = "5 + 4 - 3 + 7 - 2 + 1 - 4 - 9 - 1 + 5"
+    SENTENCE = "5 + 100 * 5 / 2 + 20"
     TOKENS = SENTENCE.split(" ")
+    print(TOKENS)
     addhandler = AdditionHandler()
     subtracthandler = SubtractionHandler()
+    multiplyhandler = MultiplicationHandler()
+    dividehandler = DivisionHandler()
 
     # Make handler chain
-    addhandler.set_next(subtracthandler)
+    multiplyhandler.set_next(dividehandler).set_next(addhandler).set_next(subtracthandler)
 
     # Activate clent code
-    AST_ROOT = client_code(addhandler, TOKENS)
+    AST_ROOT = client_code(multiplyhandler, TOKENS)
 
     # Print out a representation of the AST_ROOT
     print(AST_ROOT)
     print(AST_ROOT.interpret())
 
+
     # padaryti, kad AST_ROOT matytusi ne kaip (-1 Subtract 1), o kaip visos veiksmu sekos aprasymas. - Done
     ####################################################################################################################
-    # UZD 2: padaryti handlerius daugybai ir dalybai, bei leisti nuskaityti skaiciu is daugiau nei vieno skaitmens,
+    # UZD 2: padaryti handlerius daugybai ir dalybai+, bei leisti nuskaityti skaiciu is daugiau nei vieno skaitmens,
     # bei skaiciu su kableliu
     ####################################################################################################################
 
