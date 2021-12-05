@@ -9,6 +9,7 @@ class SimpleClass:
     def __repr__(self):
         return f"SimpleClass('{self.name}', {self.count})"
 
+
 sc1 = SimpleClass('test', 10)
 repr = repr(sc1)
 sc2 = eval(repr)
