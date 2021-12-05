@@ -77,6 +77,44 @@ def client_code(facade: Facade) -> None:
 
     print(facade.operation(), end="")
 
+# XMPL 2
+"""Facade pattern with an example of WashingMachine"""
+
+
+class Washing:
+    '''Subsystem # 1'''
+
+    def wash(self):
+        print("Washing...")
+
+
+class Rinsing:
+    '''Subsystem # 2'''
+
+    def rinse(self):
+        print("Rinsing...")
+
+
+class Spinning:
+    '''Subsystem # 3'''
+
+    def spin(self):
+        print("Spinning...")
+
+
+class WashingMachine:
+    '''Facade'''
+
+    def __init__(self):
+        self.washing = Washing()
+        self.rinsing = Rinsing()
+        self.spinning = Spinning()
+
+    def startWashing(self):
+        self.washing.wash()
+        self.rinsing.rinse()
+        self.spinning.spin()
+
 
 if __name__ == "__main__":
     # The client code may have some of the subsystem's objects already created.
@@ -86,3 +124,7 @@ if __name__ == "__main__":
     subsystem2 = Subsystem2()
     facade = Facade(subsystem1, subsystem2)
     client_code(facade)
+
+    # https://www.geeksforgeeks.org/facade-method-python-design-patterns/ for graph
+    washingMachine = WashingMachine()
+    washingMachine.startWashing()
