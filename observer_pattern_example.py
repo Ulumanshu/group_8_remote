@@ -132,3 +132,4 @@ if __name__ == "__main__":
     subject.detach(observer_a)
 
     subject.some_business_logic()
+    # Create 2 more Observers and attack them
