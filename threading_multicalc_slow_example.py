@@ -4,8 +4,9 @@ import timeit
 def count(_from, _to):
     while _from >= _to:
         _from -= 1
-        _from /= 100
-        _from *= 100
+        for e in range(100):
+            _from -= 1
+            _from += 1
 
 
 def wo_threading_func():
@@ -25,18 +26,37 @@ def with_threading_func():
     t2.join()
 
 
+def with_multiprocessing_func():
+    import multiprocessing
+
+    p1 = multiprocessing.Process(target=count, args=(400000, 200000))
+    p2 = multiprocessing.Process(target=count, args=(200000, 0))
+
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()
+
+
 if __name__ == "__main__":
     wo_threading = "wo_threading_func()"
     with_threading = "with_threading_func()"
-    setup = "from __main__ import wo_threading_func, with_threading_func"
+    with_multiprocessing = "with_multiprocessing_func()"
+    setup = "from __main__ import wo_threading_func, with_threading_func, with_multiprocessing_func"
 
     print("Without threads:", timeit.timeit(
         stmt=wo_threading,
         setup=setup,
-        number=100)
-    )
+        number=10
+    ))
     print("With threads:", timeit.timeit(
         stmt=with_threading,
         setup=setup,
-        number=100
+        number=10
+    ))
+    print("With sub-processes:", timeit.timeit(
+        stmt=with_multiprocessing,
+        setup=setup,
+        number=10
     ))
