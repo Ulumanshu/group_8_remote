@@ -1,11 +1,33 @@
 import timeit
 import requests
+from pprint import pprint
+import threading
+from timer_decorator import timing
+
 
 URLS = [
     "https://jsonplaceholder.typicode.com/comments/1",
     "https://jsonplaceholder.typicode.com/comments/2",
     "https://jsonplaceholder.typicode.com/comments/3"
 ]
+
+
+class ThreadWithReturnValue(threading.Thread):
+    def __init__(self, target, args=(), kwargs=None):
+        if kwargs is None:
+            kwargs = {}
+        self.target = target
+        self.args = args
+        self.kwargs = kwargs
+        self.result = False
+        super().__init__()
+
+    def run(self):
+        self.result = self.target(*self.args, **self.kwargs)
+
+    def join(self, timeout=None):
+        super().join(timeout)
+        return self.result
 
 
 def crawl(url):
@@ -20,6 +42,7 @@ def crawl(url):
     return res
 
 
+@timing
 def wo_threading_func(urls):
     res = []
     for url in urls:
@@ -28,18 +51,17 @@ def wo_threading_func(urls):
 
     return res
 
-
+@timing
 def with_threading_func(urls):
-    import threading
     res = []
     threads = []
     for url in urls:
-        th = threading.Thread(target=crawl, args=(url, ))
+        th = ThreadWithReturnValue(target=crawl, args=(url, ))
         th.start()
         threads.append(th)
 
     for th in threads:
-        res.extend(th.join() or "NONE")
+        res.extend(th.join())
 
     return res
 
@@ -48,8 +70,8 @@ if __name__ == "__main__":
     crawl_no_thread_results = wo_threading_func(URLS)
     crawl_with_threads_results = with_threading_func(URLS)
 
-    print(crawl_no_thread_results)
-    print(crawl_with_threads_results)
+    pprint(crawl_no_thread_results, indent=4)
+    pprint(crawl_with_threads_results, indent=4)
     # Pamodifikuoti metodus with_threading_func ir wo_threading_func bei crawl taip,
     # kad jie grazintu ka nuskaite internete kokia nors forma, ir su tredais ir be
     # (threading clase join metodo paveldejimas)
