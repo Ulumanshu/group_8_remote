@@ -2,6 +2,7 @@
 and they try to change it at the same time.
 As a result, the values of variables may be unpredictable and vary
 depending on the timings of context switches of the processes.
+Explanation link: https://www.geeksforgeeks.org/multithreading-in-python-set-2-synchronization/
 """
 import threading
 
@@ -17,23 +18,25 @@ def increment():
     x += 1
 
 
-def thread_task():
+def thread_task(lock):
     """
     task for thread
     calls increment function 100000 times.
     """
     for _ in range(1000000):
+        lock.acquire()
         increment()
+        lock.release()
 
 
 def main_task():
     global x
     # setting global variable x as 0
     x = 0
-
+    lock = threading.Lock()
     # creating threads
-    t1 = threading.Thread(target=thread_task)
-    t2 = threading.Thread(target=thread_task)
+    t1 = threading.Thread(target=thread_task, args=(lock,))
+    t2 = threading.Thread(target=thread_task, args=(lock,))
 
     # start threads
     t1.start()
