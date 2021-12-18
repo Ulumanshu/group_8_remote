@@ -112,7 +112,7 @@ class WashingMachine:
 
     def startWashing(self):
         self.washing.wash()
-        self.rinsing.rinse()
+        self.rinsing.rinse()  # Comentaras
         self.spinning.spin()
 
 

@@ -1,4 +1,7 @@
-from abc import ABC, abstractmethod
+from abc import (
+    ABC,
+    abstractmethod,
+)
 
 
 class Subject(ABC):
@@ -9,7 +12,9 @@ class Subject(ABC):
     """
 
     @abstractmethod
-    def request(self) -> None:
+    def request(
+        self,
+    ) -> None:
         pass
 
 
@@ -21,7 +26,9 @@ class RealSubject(Subject):
     changes to the RealSubject's code.
     """
 
-    def request(self) -> None:
+    def request(
+        self,
+    ) -> None:
         print("RealSubject: Handling request.")
 
 
@@ -30,10 +37,15 @@ class Proxy(Subject):
     The Proxy has an interface identical to the RealSubject.
     """
 
-    def __init__(self, real_subject: RealSubject) -> None:
+    def __init__(
+        self,
+        real_subject: RealSubject,
+    ) -> None:
         self._real_subject = real_subject
 
-    def request(self) -> None:
+    def request(
+        self,
+    ) -> None:
         """
         The most common applications of the Proxy pattern are lazy loading,
         caching, controlling the access, logging, etc. A Proxy can perform one
@@ -45,15 +57,26 @@ class Proxy(Subject):
             self._real_subject.request()
             self.log_access()
 
-    def check_access(self) -> bool:
-        print("Proxy: Checking access prior to firing a real request.")
+    def check_access(
+        self,
+    ) -> bool:
+        print(
+            "Proxy: Checking access prior to firing a real request."
+        )
         return True
 
-    def log_access(self) -> None:
-        print("Proxy: Logging the time of request.", end="")
+    def log_access(
+        self,
+    ) -> None:
+        print(
+            "Proxy: Logging the time of request.",
+            end="",
+        )
 
 
-def client_code(subject: Subject) -> None:
+def client_code(
+    subject: Subject,
+) -> None:
     """
     The client code is supposed to work with all objects (both subjects and
     proxies) via the Subject interface in order to support both real subjects
