@@ -146,6 +146,7 @@ class Rectangle(AbstractFigure):
         self.point_2 = b
         self.point_3 = c
         self.point_4 = d
+        print(self.point_1, self.point_2, self.point_3, self.point_4)
         self.l1 = sqrt(pow(self.point_1[0] - self.point_2[0], 2) + pow(self.point_2[1] - self.point_1[1], 2))
         self.l2 = sqrt(pow(self.point_3[0] - self.point_2[0], 2) + pow(self.point_3[1] - self.point_2[1], 2))
         self.l3 = sqrt(pow(self.point_4[0] - self.point_3[0], 2) + pow(self.point_4[1] - self.point_3[1], 2))
@@ -198,6 +199,8 @@ class FigureFactory:
             self.figure_object = Line(self.coordinates_list, self.color)
         elif len(self.coordinates_list) == 3:
             self.figure_object = Triangle(self.coordinates_list, self.color)
+        elif len(self.coordinates_list) == 4:
+            self.figure_object = Rectangle(*self.coordinates_list, self.color)
 
 
 if __name__ == "__main__":
@@ -221,7 +224,8 @@ if __name__ == "__main__":
         ([(3, 3), (3, 7)], 'black'),
         ([(4, 8), (8, 12)], 'black'),
         ([(10, 10), (4, 8)], 'black'),
-        ([(1, 2), (1, 6), (2, 4)], 'black')
+        ([(1, 2), (1, 6), (2, 4)], 'black'),
+        ([(1, 2), (1, 6), (6, 6), (6, 2)], 'red'),
     ]
 
     figure_list = []
