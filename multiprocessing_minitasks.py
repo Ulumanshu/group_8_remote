@@ -3,6 +3,7 @@ import requests
 from pprint import pprint
 import threading
 from timer_decorator import timing
+from typing import List
 
 
 URLS = [
@@ -19,13 +20,13 @@ class ThreadWithReturnValue(threading.Thread):
         self.target = target
         self.args = args
         self.kwargs = kwargs
-        self.result = False
+        self.result = []
         super().__init__()
 
     def run(self):
         self.result = self.target(*self.args, **self.kwargs)
 
-    def join(self, timeout=None):
+    def join(self, timeout=None) -> List:
         super().join(timeout)
         return self.result
 
@@ -50,6 +51,7 @@ def wo_threading_func(urls):
         res.extend(subres)
 
     return res
+
 
 @timing
 def with_threading_func(urls):
