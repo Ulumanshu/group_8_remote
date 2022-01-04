@@ -172,7 +172,7 @@ class Subtract(AbstractExpression):
         return f"({self.left} Subtract {self.right})"
 
 
-class Multiply(AbstractExpression):
+class Multiply(AbstractExpression, AbstractExpressionOTHER):
     def __init__(self, left, right):
         self.left = left
         self.right = right
@@ -254,7 +254,7 @@ if __name__ == "__main__":
     # Make handler chain
     multiplyhandler.set_next(dividehandler).set_next(addhandler).set_next(subtracthandler)
 
-    # Activate clent code
+    # Activate client code
     AST_ROOT = client_code(multiplyhandler, TOKENS)
 
     # Print out a representation of the AST_ROOT
@@ -263,4 +263,4 @@ if __name__ == "__main__":
 
     ####################################################################################################################
     # Workshop task make adapter pattern implementation, that will fix NumberOTHER' object has no attribute 'interpret'
-    # How you do it your thing:)
+    # How you do, it your thing:)

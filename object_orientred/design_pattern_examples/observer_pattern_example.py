@@ -115,6 +115,18 @@ class ConcreteObserverB(Observer):
             print("ConcreteObserverB: Reacted to the event")
 
 
+class ConcreteObserverC(Observer):
+    def update(self, subject: Subject) -> None:
+        if subject._state >= 6:
+            print("ConcreteObserverC: Reacted to the event")
+
+
+class ConcreteObserverD(Observer):
+    def update(self, subject: Subject) -> None:
+        if subject._state == 3 or subject._state <= 8:
+            print("ConcreteObserverD: Reacted to the event")
+
+
 if __name__ == "__main__":
     # The client code.
 
@@ -126,10 +138,21 @@ if __name__ == "__main__":
     observer_b = ConcreteObserverB()
     subject.attach(observer_b)
 
+    observer_c = ConcreteObserverC()
+    subject.attach(observer_c)
+
+    observer_d = ConcreteObserverD()
+    subject.attach(observer_d)
+
     subject.some_business_logic()
     subject.some_business_logic()
 
     subject.detach(observer_a)
+
+    subject.some_business_logic()
+    subject.some_business_logic()
+
+    subject.detach(observer_c)
 
     subject.some_business_logic()
     # Create 2 more Observers and attack them
